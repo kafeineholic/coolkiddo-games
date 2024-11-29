@@ -10,7 +10,7 @@ export default {
         primary: "#2F5323",
       },
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'], 
+        // Add custom fonts here if needed
       },
       container: {
         center: true,

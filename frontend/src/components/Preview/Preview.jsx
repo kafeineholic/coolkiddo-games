@@ -15,8 +15,8 @@ const Preview = () => {
     return (
         <>
             {/* Background Section */}
-            <div style={bgImage} className="min-h-[550px] flex items-center">
-                <div className="bg-[#3A8232]/70 flex items-center h-full w-full min-h-[550px]">
+            <div style={bgImage} className="min-h-[550px] w-full overflow-hidden">
+                <div className="bg-[#3A8232]/80 bg-gradient-to-t from-primary from-10% to-transparent to-90% flex items-center h-full w-full min-h-[550px]">
                     <div className="container">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center">
                             {/* Content Section */}
