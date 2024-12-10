@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import profilePic from "../../assets/profile_pic copy.png";
-import dropdownIcon from "../../assets/dropdown_icon copy.svg";
+import profilePic from "../assets/profile_pic copy.png";
+import dropdownIcon from "../assets/dropdown_icon copy.svg";
 
 const Navbar = ({ user, onLogout }) => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -57,8 +57,8 @@ const Navbar = ({ user, onLogout }) => {
                                         <div className="absolute top-0 right-0 pt-14 text-base text-gray-600 z-20 font-medium">
                                             <div className="min-w-48 bg-gray-50 rounded flex flex-col gap-4 p-4">
                                                 {/* Welcome */}
-                                                <p 
-                                                className="font-semibold text-gray-800">
+                                                <p
+                                                    className="font-semibold text-gray-800">
                                                     Welcome, {user.name || 'User'}
                                                 </p>
 
