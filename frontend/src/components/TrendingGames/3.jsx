@@ -1,9 +1,23 @@
-import React from 'react'
+import React from 'react';
 
-const FloppyBird = () => {
+
+function FloppyBird() {
   return (
-    <div>floppybird</div>
-  )
+    <div>
+      <style type="text/css">
+        {`
+          @import url('/floppybird/floppybird.css');
+        `}
+      </style>
+      <iframe
+        src="/floppybird/floppybird.html" // Adjust the path if necessary
+        width="431"
+        height="768"
+        title="Floppy Bird Game"
+        style={{ border: 'none' }}
+      />
+    </div>
+  );
 }
 
 export default FloppyBird;

@@ -13,7 +13,9 @@ import Footer from './components/Footer/Footer.jsx';
 import TrendingGames from './components/TrendingGames/TrendingGames.jsx';
 import ColorMemo from './components/TrendingGames/1.jsx';
 import TwoZeroFourEightGames from './components/TrendingGames/2.jsx';
+
 import FloppyBird from './components/TrendingGames/3.jsx';
+
 import PacMan from './components/TrendingGames/4.jsx';
 import TicTacToe from './components/TrendingGames/5.jsx';
 import WhackAMole from './components/TrendingGames/6.jsx';
