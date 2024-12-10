@@ -31,11 +31,11 @@ const App = () => {
 
 
         <Route path="/games" element={<Games />} />
-        <Route path="/games/1" element={<ColorMemo />} />
-        <Route path="/games/2" element={<TwoZeroFourEightGames />} />
-        <Route path="/games/floppy-bird" element={<FloppyBird />} />
-        <Route path="/games/4" element={<PacMan />} />
-        <Route path="/games/TicTacToe" element={<TicTacToe />} />
+        <Route path="/games/ColorMemo" element={<ColorMemo />} />
+        <Route path="/games/2048-games" element={<TwoZeroFourEightGames />} />
+        <Route path="/games/Floppy-Bird" element={<FloppyBird />} />
+        <Route path="/games/PacMan" element={<PacMan />} />
+        <Route path="/games/Tic-Tac-Toe" element={<TicTacToe />} />
         <Route path="/games/WhackAMole" element={<WhackAMole />} />
 
       </Routes>

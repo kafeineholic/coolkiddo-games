@@ -4,25 +4,25 @@ import { useNavigate } from "react-router-dom";
 
 const GameCardData = [
     {
-        id: 1,
+        id: "ColorMemo",
         title: "ColorMemo",
         image: "https://via.placeholder.com/150",
         players: 40,
     },
     {
-        id: 2,
+        id: "2048-games",
         title: "2048-games",
         image: "https://via.placeholder.com/150",
         players: 42,
     },
     {
-        id: 3,
+        id: "Floppy-Bird",
         title: "FloppyBird",
         image: "https://via.placeholder.com/150",
         players: 45,
     },
     {
-        id: 4,
+        id: "PacMan",
         title: "PacMan",
         image: "https://via.placeholder.com/150",
         players: 50,
