@@ -1,4 +1,7 @@
 import React from 'react';
+import { FaFacebook } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaInstagramSquare } from "react-icons/fa";
 
 const Footer = () => {
     return (
@@ -6,10 +9,9 @@ const Footer = () => {
             {/* <!-- Column 1 --> */}
             <div className="flex items-center gap-2">
                 <p className="font-bold">Follow us on</p>
-                <a href="https://facebook.com" aria-label="Facebook"><i className="fa-brands fa-facebook"></i></a>
-                <a href="https://instagram.com" aria-label="Instagram"><i className="fa-brands fa-instagram"></i></a>
-                <a href="https://twitter.com" aria-label="Twitter"><i className="fa-brands fa-x-twitter"></i></a>
-                <a href="https://line.me" aria-label="Line"><i className="fa-brands fa-line"></i></a>
+                <a href="https://facebook.com" aria-label="Facebook"><FaFacebook /></a>
+                <a href="https://instagram.com" aria-label="Instagram"><FaInstagramSquare /></a>
+                <a href="https://twitter.com" aria-label="Twitter"><FaSquareXTwitter /></a>
             </div>
             {/* <!-- Column 2 --> */}
             <div className="flex items-center gap-2">
