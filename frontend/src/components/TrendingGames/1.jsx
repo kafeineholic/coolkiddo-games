@@ -6,4 +6,4 @@ const ColorMemo = () => {
   )
 }
 
-export default ColorMemo
+export default ColorMemo;

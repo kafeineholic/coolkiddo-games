@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaUserAlt } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
+
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -52,31 +55,38 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center">
-      <div className="flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-zinc-600 text-sm shadow-lg">
-        <p className="text-2xl font-semibold">Login</p>
-        <p>Please log in to book an appointment</p>
-
-        <div className="w-full">
-          <p>Username</p>
+    <div className="bg-pink-300 flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-zinc-600 text-sm shadow-lg">
+      <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center">
+        <h1 className="text-2xl font-bold text-center">Login</h1>
+        {/* Username */}
+        <div className="">
+          <label htmlFor="username-input">
+            Username
+          </label>
           <input
-            className="border border-zinc-300 rounded-md w-full p-2 mt-1"
+            className=""
             type="text"
             onChange={(e) => setUsername(e.target.value)}
             value={username}
             required
           />
+          {/* icon username<FaUserAlt /> */}
         </div>
-
-        <div className="w-full">
-          <p>Password</p>
+        
+        {/* Password */}
+        <div className="">
+          <label htmlFor="password-input">
+            Password
+          </label>
           <input
-            className="border border-zinc-300 rounded-md w-full p-2 mt-1"
+            className=""
             type={showPassword ? 'text' : 'password'}
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             required
           />
+          {/* icon password <RiLockPasswordFill /> */}
+
           <div
             onClick={() => setShowPassword(!showPassword)}
             className="text-sm cursor-pointer text-primary"
@@ -102,9 +112,10 @@ const Login = ({ onLogin }) => {
             Sign up here
           </Link>
         </p>
-      </div>
-    </form>
-    
+      </form>
+    </div>
+
+
   );
 };
 
