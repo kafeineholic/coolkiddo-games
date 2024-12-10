@@ -1,6 +1,6 @@
 import React from "react";
-import CoverImg from "../../assets/imgpreview/preview_cover.jpg";
-import HeroPng from "../../assets/imgpreview/preview_png.png";
+import CoverImg from "../assets/imgpreview/preview_cover.jpg";
+import HeroPng from "../assets/imgpreview/preview_png.png";
 import { useNavigate } from "react-router-dom";
 
 const bgImage = {
@@ -44,7 +44,7 @@ const Preview = () => {
                                     Read About Games That You Enjoy
                                 </h1>
                                 <button className="mt-8 bg-gradient-to-r from-[#E22413] to-[#7A1008] inline-block px-6 py-3 rounded-2xl text-[#F5F4ED] font-semibold"
-                                                    onClick={() => navigate("/trending")}>
+                                    onClick={() => navigate("/trending")}>
                                     Start Exploring
                                 </button>
                             </div>

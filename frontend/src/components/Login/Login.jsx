@@ -1,122 +1,139 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaUserAlt } from "react-icons/fa";
-import { RiLockPasswordFill } from "react-icons/ri";
+import React, { useContext, useState } from 'react'
+import { assets } from '../assets/assets'
+import { useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
+import axios from 'axios'
+import { toast } from 'react-toastify'
+
+const Login = () => {
+
+    const navigate = useNavigate()
+
+    const { backendUrl, setIsLoggedin, getUserData } = useContext(AppContext)
+
+    const [state, setState] = useState('Sign Up')
+
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const onSubmitHandler = async (e) => {
+        try {
+            e.preventDefault();
+            axios.defaults.withCredentials = true;
+
+            if (state === 'Sign Up') {
+                const { data } = await axios.post(backendUrl + '/api/auth/register', {
+                    name,
+                    email,
+                    password
+                });
+
+                if (data.success) {
+                    // Check if a session or token is set
+                    console.log('Registration successful:', data);
+
+                    setIsLoggedin(true);
+                    await getUserData(); // Fetch user data after registration
+                    navigate('/');
+                } else {
+                    toast.error(data.message);
+                }
+            } else {
+                const { data } = await axios.post(backendUrl + '/api/auth/login', {
+                    email,
+                    password
+                });
+
+                if (data.success) {
+                    setIsLoggedin(true);
+                    await getUserData(); // Fetch user data after login
+                    navigate('/');
+                } else {
+                    toast.error(data.message);
+                }
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
+    };
 
 
-const Login = ({ onLogin }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+    return (
+        <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
+    bg-gradient-to-br from-blue-200 to-purple-400'>
+            <img onClick={() => navigate('/')}
+                src={assets.logo} alt=""
+                className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer' />
 
-  useEffect(() => {
-    const user = sessionStorage.getItem('user');
-    if (user) {
-      navigate('/');
-    }
-  }, [navigate]);
+            <div className='bg-slate-900 p-10 rounded-lg shadow-lg w-full sm:w-96
+       text-indigo-300 text-sm'>
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
+                <h2 className='text-3xl font-semibold text-white text-center mb-3'>
+                    {state === 'Sign Up' ? 'Create Account' : 'Login'}</h2>
+                <p className='text-center text-sm mb-6'>
+                    {state === 'Sign Up' ? 'Create your account' : 'Login to your account!'}</p>
 
-    if (!username || !password) {
-      setErrorMessage('Both fields are required');
-      return;
-    }
 
-    setIsLoading(true);
-    try {
-      const response = await fetch('http://localhost:5010/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-      setIsLoading(false);
+                <form onSubmit={onSubmitHandler}>
+                    {state === 'Sign Up' && (
+                        <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5
+        rounded-full bg-[#333A5C]'>
+                            <img src={assets.person_icon} alt="" />
+                            <input onChange={e => setName(e.target.value)}
+                                value={name}
+                                className='bg-transparent outline-none'
+                                type="text" placeholder="Full Name" required />
+                        </div>)}
 
-      if (response.ok) {
-        const result = await response.json();
-        sessionStorage.setItem('user', JSON.stringify({ name: username, token: result.token }));
-        onLogin({ name: username, token: result.token }); // onLogin
-        navigate('/'); // redirect to home
-      } else {
-        const errorData = await response.json();
-        setErrorMessage(errorData.message);
-      }
-    } catch (error) {
-      setIsLoading(false);
-      setErrorMessage('Unable to log in. Please try again later.');
-      console.error('Login error:', error);
-    }
-  };
 
-  return (
-    <div className="bg-pink-300 flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-zinc-600 text-sm shadow-lg">
-      <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center">
-        <h1 className="text-2xl font-bold text-center">Login</h1>
-        {/* Username */}
-        <div className="">
-          <label htmlFor="username-input">
-            Username
-          </label>
-          <input
-            className=""
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-            required
-          />
-          {/* icon username<FaUserAlt /> */}
+                    <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5
+    rounded-full bg-[#333A5C]'>
+                        <img src={assets.mail_icon} alt="" />
+                        <input onChange={e => setEmail(e.target.value)}
+                            value={email}
+                            className='bg-transparent outline-none'
+                            type="email" placeholder="Email" required />
+                    </div>
+
+                    <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5
+    rounded-full bg-[#333A5C]'>
+                        <img src={assets.lock_icon} alt="" />
+                        <input onChange={e => setPassword(e.target.value)}
+                            value={password}
+                            className='bg-transparent outline-none'
+                            type="password" placeholder="Password" required />
+                    </div>
+
+                    <p onClick={() => navigate('/reset-password')}
+                        className='mb-4 text-indigo-500 cursor-pointer'>
+                        Forgot Password?</p>
+
+                    <button className='w-full py-2.5 rounded-full bg-gradient-to-r
+      from-indigo-500 to-indigo-900 text-white font-medium'>
+                        {state}</button>
+
+                    {state === 'Sign Up' ?
+                        (<p className='text-gray-400 text-center text-xs mt-4'>
+                            Already have an account? {'  '}
+                            <span onClick={() => setState('Login')}
+                                className='text-blue-400 cursor-pointer underline'>
+                                Login here</span>
+                        </p>)
+                        :
+                        (<p className='text-gray-400 text-center text-xs mt-4'>
+                            Don't have an account? {'  '}
+                            <span onClick={() => setState('Sign Up')}
+                                className='text-blue-400 cursor-pointer underline'>
+                                Sign Up</span>
+                        </p>)}
+
+                </form>
+
+            </div>
+
         </div>
-        
-        {/* Password */}
-        <div className="">
-          <label htmlFor="password-input">
-            Password
-          </label>
-          <input
-            className=""
-            type={showPassword ? 'text' : 'password'}
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-            required
-          />
-          {/* icon password <RiLockPasswordFill /> */}
+    )
+}
 
-          <div
-            onClick={() => setShowPassword(!showPassword)}
-            className="text-sm cursor-pointer text-primary"
-          >
-            {showPassword ? 'Hide Password' : 'Show Password'}
-          </div>
-        </div>
-
-        {errorMessage && (
-          <div className="text-red-500 text-sm mt-2">{errorMessage}</div>
-        )}
-
-        <button
-          className="bg-primary text-white w-full py-2 rounded-xl text-sm mt-3 hover:bg-white hover:text-primary hover:border hover:border-primary font-semibold"
-          disabled={isLoading}
-        >
-          {isLoading ? 'Logging in...' : 'Login'}
-        </button>
-
-        <p>
-          Don't have an account? &nbsp;&nbsp;
-          <Link to="/register" className="text-primary underline cursor-pointer">
-            Sign up here
-          </Link>
-        </p>
-      </form>
-    </div>
-
-
-  );
-};
-
-export default Login;
+export default Login
