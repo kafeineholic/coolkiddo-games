@@ -1,9 +1,9 @@
 import React from 'react'
 
-const tictactoe = () => {
+const TicTacToe = () => {
   return (
     <div>tictactoe</div>
   )
 }
 
-export default tictactoe
+export default TicTacToe;

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const floppybird = () => {
+const FloppyBird = () => {
   return (
     <div>floppybird</div>
   )
 }
 
-export default floppybird;
+export default FloppyBird;

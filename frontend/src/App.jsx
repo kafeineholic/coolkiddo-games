@@ -11,11 +11,12 @@ import Preview from './components/Preview/Preview.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
 import TrendingGames from './components/TrendingGames/TrendingGames.jsx';
-import TwoZeroFourEightGames from './components/GamesPage/TwoZeroFourEightGames.jsx';
-import floppybird from './components/GamesPage/floppybird.jsx';
-import pacman from './components/GamesPage/pacman.jsx';
-import tictactoe from './components/GamesPage/tictactoe.jsx';
-import whackamole from './components/GamesPage/whackamole.jsx';
+import ColorMemo from './components/TrendingGames/1.jsx';
+import TwoZeroFourEightGames from './components/TrendingGames/2.jsx';
+import FloppyBird from './components/TrendingGames/3.jsx';
+import PacMan from './components/TrendingGames/4.jsx';
+import TicTacToe from './components/TrendingGames/5.jsx';
+import WhackAMole from './components/TrendingGames/6.jsx';
 
 
 const App = () => {
@@ -47,11 +48,12 @@ const App = () => {
         <Route path="/login" element={<Login onLogin={handleLogin} />} /> 
         <Route path="/register" element={<Signup />} />
         <Route path="/trending" element={<TrendingGames />} />
-        <Route path="/GamesPage/1" element={<TwoZeroFourEightGames />} />
-        <Route path="/GamesPage/2" element={<floppybird />} />
-        <Route path="/GamesPage/3" element={<pacman />} />
-        <Route path="/GamesPage/4" element={<tictactoe />} />
-        <Route path="/GamesPage/5" element={<whackamole />} />
+        <Route path="/GamesPage/1" element={<ColorMemo />} />
+        <Route path="/GamesPage/2" element={<TwoZeroFourEightGames />} />
+        <Route path="/GamesPage/3" element={<FloppyBird />} />
+        <Route path="/GamesPage/4" element={<PacMan />} />
+        <Route path="/GamesPage/5" element={<WhackAMole />} />
+        <Route path="/GamesPage/6" element={<TicTacToe />} />
         <Route path="/profile" element={<Profile/>} />
       </Routes>
       <Footer />

@@ -5,37 +5,37 @@ import { useNavigate } from "react-router-dom";
 const GameCardData = [
     {
         id: 1,
-        title: "Game Title",
+        title: "ColorMemo",
         image: "https://via.placeholder.com/150",
         players: 40,
     },
     {
         id: 2,
-        title: "Game Title1",
+        title: "2048-games",
         image: "https://via.placeholder.com/150",
         players: 42,
     },
     {
         id: 3,
-        title: "Game Title2",
+        title: "FloppyBird",
         image: "https://via.placeholder.com/150",
         players: 45,
     },
     {
         id: 4,
-        title: "Game Title3",
+        title: "PacMan",
         image: "https://via.placeholder.com/150",
         players: 50,
     },
     {
         id: 5,
-        title: "Game Title",
+        title: "WhackAMole",
         image: "https://via.placeholder.com/150",
         players: 70,
     },
     {
         id: 6,
-        title: "Game Title5",
+        title: "Tic-Tac-Toe",
         image: "https://via.placeholder.com/150",
         players: 80,
     },
@@ -46,7 +46,7 @@ const TrendingGames = () => {
 
     const handleNavigate = (id) => {
         console.log(`Navigating to game with ID: ${id}`);
-        navigate(`/game/${id}`);
+        navigate(`/TrendingGames/${id}`);
     };
 
     return (
