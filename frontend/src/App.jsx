@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes,Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Login from './pages/Login'
 import EmailVerify from './pages/EmailVerify'
@@ -9,21 +9,37 @@ import 'react-toastify/dist/ReactToastify.css';
 import Profile from './pages/Profile'
 import Footer from './components/Footer'
 
+import Games from './components/Games/Games.jsx'
+import ColorMemo from './components/Games/ColorMemo.jsx'
+import TwoZeroFourEightGames from './components/Games/TwoZeroFourEightGames.jsx'
+import FloppyBird from './components/Games/floppy-bird.jsx'
+import PacMan from './components/Games/PacMan.jsx'
+import TicTacToe from './components/Games/TicTacToe.jsx'
+import WhackAMole from './components/Games/WhackAMole.jsx'
+
+
 const App = () => {
   return (
     <div>
-      <ToastContainer/>
-     <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/email-verify' element={<EmailVerify/>}/>
-      <Route path='/reset-password' element={<ResetPassword/>}/>
-      <Route path='/profile' element={<Profile/>}/>
-      
+      <ToastContainer />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/email-verify' element={<EmailVerify />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/profile' element={<Profile />} />
 
-      
-     </Routes>
-     <Footer/>
+
+        <Route path="/games" element={<Games />} />
+        <Route path="/games/1" element={<ColorMemo />} />
+        <Route path="/games/2" element={<TwoZeroFourEightGames />} />
+        <Route path="/games/3" element={<FloppyBird />} />
+        <Route path="/games/4" element={<PacMan />} />
+        <Route path="/games/5" element={<TicTacToe />} />
+        <Route path="/games/6" element={<WhackAMole />} />
+
+      </Routes>
+      <Footer />
     </div>
   )
 }
