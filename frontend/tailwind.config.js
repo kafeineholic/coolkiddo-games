@@ -5,21 +5,7 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      colors: {
-        primary: "#2F5323",
-      },
-      fontFamily: {
-        // Add custom fonts here if needed
-      },
-      container: {
-        center: true,
-        padding: {
-          DEFAULT: "1rem",
-          md: "2rem",
-        },
-      },
-    },
+    extend: {},
   },
   plugins: [],
-};
+}

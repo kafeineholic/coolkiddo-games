@@ -1,66 +1,31 @@
-import React, { useState, useEffect }  from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-import Navbar from './components/Navbar/Navbar.jsx';
-import Login from './components/Login/Login.jsx';
-import Signup from './components/SignUp/SignUp.jsx';
-import Profile from './components/Profile/Profile.jsx';
-
-
-import Preview from './components/Preview/Preview.jsx';
-import Footer from './components/Footer/Footer.jsx';
-
-import TrendingGames from './components/TrendingGames/TrendingGames.jsx';
-import ColorMemo from './components/TrendingGames/1.jsx';
-import TwoZeroFourEightGames from './components/TrendingGames/2.jsx';
-
-import FloppyBird from './components/TrendingGames/floppy-bird.jsx';
-
-import PacMan from './components/TrendingGames/4.jsx';
-import TicTacToe from './components/TrendingGames/5.jsx';
-import WhackAMole from './components/TrendingGames/6.jsx';
-
+import React from 'react'
+import { Routes,Route } from 'react-router-dom'
+import Home from './pages/Home'
+import Login from './pages/Login'
+import EmailVerify from './pages/EmailVerify'
+import ResetPassword from './pages/ResetPassword'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Profile from './pages/Profile'
+import Footer from './components/Footer'
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const sessionUser = sessionStorage.getItem('user');
-    if (sessionUser) {
-      setUser(JSON.parse(sessionUser));
-    }
-  }, []);
-
-  const handleLogin = (userData) => {
-    setUser(userData);
-    sessionStorage.setItem('user', JSON.stringify(userData));
-  };
-
-  const handleLogout = () => {
-    setUser(null);
-    sessionStorage.removeItem('user');
-  };
-  
   return (
-    
-    <Router>
-      <Navbar user={user} onLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<Preview />} />
-        <Route path="/login" element={<Login onLogin={handleLogin} />} /> 
-        <Route path="/register" element={<Signup />} />
-        <Route path="/trending" element={<TrendingGames />} />
-        <Route path="/TrendingGames/1" element={<ColorMemo />} />
-        <Route path="/TrendingGames/2" element={<TwoZeroFourEightGames />} />
-        <Route path="/TrendingGames/floppy-bird" element={<FloppyBird />} />
-        <Route path="/TrendingGames/4" element={<PacMan />} />
-        <Route path="/TrendingGames/5" element={<TicTacToe />} />
-        <Route path="/TrendingGames/6" element={<WhackAMole />} />
-        <Route path="/profile" element={<Profile/>} />
-      </Routes>
-      <Footer />
-    </Router>
-  );
-};
+    <div>
+      <ToastContainer/>
+     <Routes>
+      <Route path='/' element={<Home/>}/>
+      <Route path='/login' element={<Login/>}/>
+      <Route path='/email-verify' element={<EmailVerify/>}/>
+      <Route path='/reset-password' element={<ResetPassword/>}/>
+      <Route path='/profile' element={<Profile/>}/>
+      
 
-export default App;
+      
+     </Routes>
+     <Footer/>
+    </div>
+  )
+}
+
+export default App
