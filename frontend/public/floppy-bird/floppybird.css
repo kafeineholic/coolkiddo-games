@@ -9,6 +9,7 @@ body {
   align-items: center;
   text-align: center;
   justify-content: center;
+  font-size: 13px;
 }
 header {
   margin: 0 auto;
@@ -21,6 +22,7 @@ h1 {
   margin: 0;
 }
 #score-container {
+  text-size: 10px;
   display: flex;
   justify-content: space-between;
   padding: 8px 6px;

@@ -10,7 +10,7 @@ function FloppyBird() {
         }}>
 
             <iframe
-                src="/floppybird/floppybird.html" // Adjust the path if necessary
+                src="/floppy-bird/floppybird.html" // Adjust the path if necessary
                 width="431"
                 height="700"
                 title="Floppy Bird Game"
