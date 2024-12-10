@@ -5,10 +5,15 @@ body {
   text-align: center;
   font-family: 'Press Start 2P', cursive;
   user-select: none;
+  box-sizing: border-box;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }
 header {
   margin: 0 auto;
-  width: 431px;
+  width: 80%;
+  box-sizing: border-box;
 }
 h1 {
   background: url("https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png") 0% 340px;
@@ -20,4 +25,11 @@ h1 {
   justify-content: space-between;
   padding: 8px 6px;
   background: #5EE270;
+}
+
+canvas {
+  width: 80%; 
+  height: auto;
+  max-width: 431px; /* Ensure it doesn't exceed original size */
+  max-height: 768px;
 }

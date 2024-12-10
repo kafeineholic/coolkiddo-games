@@ -3,7 +3,11 @@ import React from 'react';
 
 function FloppyBird() {
   return (
-    <div>
+    <div style={{
+      display:'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}>
       
       <iframe
         src="/floppybird/floppybird.html" // Adjust the path if necessary

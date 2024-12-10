@@ -14,7 +14,7 @@ import TrendingGames from './components/TrendingGames/TrendingGames.jsx';
 import ColorMemo from './components/TrendingGames/1.jsx';
 import TwoZeroFourEightGames from './components/TrendingGames/2.jsx';
 
-import FloppyBird from './components/TrendingGames/3.jsx';
+import FloppyBird from './components/TrendingGames/floppy-bird.jsx';
 
 import PacMan from './components/TrendingGames/4.jsx';
 import TicTacToe from './components/TrendingGames/5.jsx';
@@ -52,7 +52,7 @@ const App = () => {
         <Route path="/trending" element={<TrendingGames />} />
         <Route path="/TrendingGames/1" element={<ColorMemo />} />
         <Route path="/TrendingGames/2" element={<TwoZeroFourEightGames />} />
-        <Route path="/TrendingGames/3" element={<FloppyBird />} />
+        <Route path="/TrendingGames/floppy-bird" element={<FloppyBird />} />
         <Route path="/TrendingGames/4" element={<PacMan />} />
         <Route path="/TrendingGames/5" element={<TicTacToe />} />
         <Route path="/TrendingGames/6" element={<WhackAMole />} />
