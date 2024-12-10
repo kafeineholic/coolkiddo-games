@@ -86,8 +86,8 @@ const render = () => {
     ctx.drawImage(img, 432, Math.floor((index % 9) / 3) * size[1], ...size, ((canvas.width / 2) - size[0] / 2), flyHeight, ...size);
     flyHeight = (canvas.height / 2) - (size[1] / 2);
       // text accueil
-    ctx.fillText(`Best score : ${bestScore}`, 85, 245);
-    ctx.fillText('Click to play', 90, 535);
+    ctx.fillText(`Best score : ${bestScore}`, 80, 145);
+    ctx.fillText('Click to play', 90, 435);
     ctx.font = "bold 30px courier";
   }
 
