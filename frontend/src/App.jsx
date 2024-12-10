@@ -33,7 +33,7 @@ const App = () => {
         <Route path="/games" element={<Games />} />
         <Route path="/games/ColorMemo" element={<ColorMemo />} />
         <Route path="/games/2048-games" element={<TwoZeroFourEightGames />} />
-        <Route path="/games/Floppy-Bird" element={<FloppyBird />} />
+        <Route path="/games/floppy-Bird" element={<FloppyBird />} />
         <Route path="/games/PacMan" element={<PacMan />} />
         <Route path="/games/Tic-Tac-Toe" element={<TicTacToe />} />
         <Route path="/games/WhackAMole" element={<WhackAMole />} />
