@@ -4,9 +4,7 @@ const Profile = () => {
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
 
-
     useEffect(() => {
-
         const fetchProfileData = async () => {
             try {
                 const response = await fetch('http://localhost:5010/api/profile', {
@@ -35,13 +33,42 @@ const Profile = () => {
     }
 
     return (
-        <div>
-            <h1>Profile</h1>
-            <p><strong>Username:</strong> {userData.username}</p>
-            <p><strong>Email:</strong> {userData.email}</p>
-            <p><strong>Full Name:</strong> {userData.full_name}</p>
-            <p><strong>Phone:</strong> {userData.phone}</p>
-        </div>
+        <form className="max-w-sm mx-auto">
+            <input
+                type="text"
+                id="disabled-input"
+                aria-label="disabled input"
+                className="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                value={userData.username}
+                disabled={true}
+            />
+
+            <input
+                type="text"
+                id="disabled-input"
+                aria-label="disabled input"
+                className="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                value={userData.username}
+                disabled={true}
+            />
+
+            <input
+                type="text"
+                id="disabled-input"
+                aria-label="disabled input"
+                className="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                value={userData.username}
+                disabled={true}
+            />
+            <input
+                type="text"
+                id="disabled-input"
+                aria-label="disabled input"
+                className="mb-5 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                value={userData.username}
+                disabled={true}
+            />
+        </form>
     );
 };
 

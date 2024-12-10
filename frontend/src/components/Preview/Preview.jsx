@@ -1,6 +1,7 @@
 import React from "react";
 import CoverImg from "../../assets/imgpreview/preview_cover.jpg";
 import HeroPng from "../../assets/imgpreview/preview_png.png";
+import { useNavigate } from "react-router-dom";
 
 const bgImage = {
     backgroundImage: `url(${CoverImg})`,
@@ -12,6 +13,21 @@ const bgImage = {
 };
 
 const Preview = () => {
+    const navigate = useNavigate();
+    // const [isLoggedIn, setIsLoggedIn] = useState(false); 
+
+    // const handleLogin = () => {
+    //     setIsLoggedIn(true);
+    // };
+
+    // const handleExplore = () => {
+    //     if (isLoggedIn) {
+    //         navigate("/trending");
+    //     } else {
+    //         navigate("/login");
+    //         alert("Please log in to explore trending games.");
+    //     }
+    // }; 
     return (
         <>
             {/* Background Section */}
@@ -27,7 +43,8 @@ const Preview = () => {
                                 <h1 className="text-5xl text-[#F5F4ED] font-bold">
                                     Read About Games That You Enjoy
                                 </h1>
-                                <button className="mt-8 bg-gradient-to-r from-[#E22413] to-[#7A1008] inline-block px-6 py-3 rounded-2xl text-[#F5F4ED] font-semibold">
+                                <button className="mt-8 bg-gradient-to-r from-[#E22413] to-[#7A1008] inline-block px-6 py-3 rounded-2xl text-[#F5F4ED] font-semibold"
+                                                    onClick={() => navigate("/trending")}>
                                     Start Exploring
                                 </button>
                             </div>
