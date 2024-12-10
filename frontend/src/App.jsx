@@ -33,10 +33,10 @@ const App = () => {
         <Route path="/games" element={<Games />} />
         <Route path="/games/1" element={<ColorMemo />} />
         <Route path="/games/2" element={<TwoZeroFourEightGames />} />
-        <Route path="/games/3" element={<FloppyBird />} />
+        <Route path="/games/floppy-bird" element={<FloppyBird />} />
         <Route path="/games/4" element={<PacMan />} />
-        <Route path="/games/5" element={<TicTacToe />} />
-        <Route path="/games/6" element={<WhackAMole />} />
+        <Route path="/games/TicTacToe" element={<TicTacToe />} />
+        <Route path="/games/WhackAMole" element={<WhackAMole />} />
 
       </Routes>
       <Footer />

@@ -28,16 +28,16 @@ const GameCardData = [
         players: 50,
     },
     {
-        id: 5,
-        title: "WhackAMole",
-        image: "https://via.placeholder.com/150",
-        players: 70,
-    },
-    {
-        id: 6,
+        id: "Tic-Tac-Toe",
         title: "Tic-Tac-Toe",
         image: "https://via.placeholder.com/150",
         players: 80,
+    },
+    {
+        id: "WhackAMole",
+        title: "WhackAMole",
+        image: "https://via.placeholder.com/150",
+        players: 70,
     },
 ];
 
@@ -46,7 +46,7 @@ const Games = () => {
 
     const handleNavigate = (id) => {
         console.log(`Navigating to game with ID: ${id}`);
-        navigate(`/TrendingGames/${id}`);
+        navigate(`/games/${id}`);
     };
 
     return (
