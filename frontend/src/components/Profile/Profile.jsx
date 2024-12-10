@@ -33,12 +33,12 @@ const Profile = () => {
     }
 
     return (
-        <div className="bg-orange-300 flex justify-center items-center h-screen">
-            <div className="flex flex-row justify-center items-start space-x-4 p-4 bg-white shadow-lg rounded-lg">
+        <div className="flex justify-center items-center h-screen">
+            <div className="flex flex-row justify-center items-start space-x-6 p-4 bg-white shadow-lg rounded-lg w-[90%]">
                 {/* Left column */}
-                <div className="max-w-sm w-full">
+                <div className="max-w-xs w-full">
                     <div className="rounded-lg border bg-white px-4 pt-8 pb-10 shadow-lg">
-                        <div className="relative mx-auto w-36 rounded-full">
+                        <div className="relative mx-auto w-28 rounded-full">
                             <span className="absolute right-0 m-3 h-3 w-3 rounded-full bg-green-500 ring-2 ring-green-300 ring-offset-2" />
                             <img
                                 className="mx-auto h-auto w-full rounded-full"
@@ -46,10 +46,10 @@ const Profile = () => {
                                 alt=""
                             />
                         </div>
-                        <h1 className="my-1 text-center text-xl font-bold leading-8 text-gray-900">
+                        <h1 className="my-1 text-center text-lg font-bold leading-8 text-gray-900">
                             username{userData?.username}
                         </h1>
-                        <h3 className="font-lg text-semibold text-center leading-6 text-gray-600">
+                        <h3 className="text-md text-center font-semibold leading-6 text-gray-600">
                             fullname{userData?.full_name}
                         </h3>
                         <p className="text-center text-sm leading-6 text-gray-500 hover:text-gray-600">
@@ -73,8 +73,8 @@ const Profile = () => {
                 </div>
 
                 {/* Right column */}
-                <div>
-                    <form className="max-w-sm bg-white shadow-sm p-4 rounded-lg">
+                <div className="flex-grow">
+                    <form className="bg-white shadow-sm p-6 rounded-lg">
                         <div className="mb-5">
                             <label htmlFor="username-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 Username
@@ -131,6 +131,7 @@ const Profile = () => {
                 </div>
             </div>
         </div>
+
     );
 };
 
