@@ -7,6 +7,11 @@ function FloppyBird() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            width: '100%' ,
+            backgroundImage: `url('https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png')`, // Replace with your image URL
+            backgroundSize: '800px 654px', 
+            backgroundRepeat: 'repeat-x', 
+            backgroundPosition: 'left top', 
         }}>
 
             <iframe

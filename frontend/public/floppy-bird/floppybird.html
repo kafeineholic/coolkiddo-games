@@ -5,8 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./floppybird.css" type="text/css" />
+    <link rel="stylesheet" href="./floppybird.css" type="text/css"/>
     <script src="/floppybird.js" async></script>
+    <audio id="gameAudio" loop muted>
+        <source src="./audio/floppy.mp3" type="audio/mpeg">
+    </audio>
+    <script>
+        document.addEventListener('click', () => {
+        const audio = document.getElementById('gameAudio');
+        audio.muted = false;
+        audio.play().catch(error => console.log("Audio play error:", error));
+    });
+    </script>
 
 
 </head>
