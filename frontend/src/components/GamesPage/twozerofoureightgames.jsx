@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/2048styles.css';
+
 
 const TwoZeroFourEightGames = () => {
   return (
