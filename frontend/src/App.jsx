@@ -48,12 +48,12 @@ const App = () => {
         <Route path="/login" element={<Login onLogin={handleLogin} />} /> 
         <Route path="/register" element={<Signup />} />
         <Route path="/trending" element={<TrendingGames />} />
-        <Route path="/GamesPage/1" element={<ColorMemo />} />
-        <Route path="/GamesPage/2" element={<TwoZeroFourEightGames />} />
-        <Route path="/GamesPage/3" element={<FloppyBird />} />
-        <Route path="/GamesPage/4" element={<PacMan />} />
-        <Route path="/GamesPage/5" element={<WhackAMole />} />
-        <Route path="/GamesPage/6" element={<TicTacToe />} />
+        <Route path="/TrendingGames/1" element={<ColorMemo />} />
+        <Route path="/TrendingGames/2" element={<TwoZeroFourEightGames />} />
+        <Route path="/TrendingGames/3" element={<FloppyBird />} />
+        <Route path="/TrendingGames/4" element={<PacMan />} />
+        <Route path="/TrendingGames/5" element={<WhackAMole />} />
+        <Route path="/TrendingGames/6" element={<TicTacToe />} />
         <Route path="/profile" element={<Profile/>} />
       </Routes>
       <Footer />
