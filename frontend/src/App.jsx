@@ -10,7 +10,7 @@ import Profile from './pages/Profile'
 import Footer from './components/Footer'
 
 import Games from './components/Games/Games.jsx'
-import ColorMemo from './components/Games/ColorMemo.jsx'
+import MemoGame from './components/Games/MemoGame.jsx'
 import TwoZeroFourEightGames from './components/Games/TwoZeroFourEightGames.jsx'
 import FloppyBird from './components/Games/floppy-bird.jsx'
 import PacMan from './components/Games/PacMan.jsx'
@@ -30,7 +30,7 @@ const App = () => {
         <Route path='/profile' element={<Profile />} />
 
         <Route path="/games" element={<Games />} />
-        <Route path="/games/ColorMemo" element={<ColorMemo />} />
+        <Route path="/games/memo-game" element={<MemoGame />} />
         <Route path="/games/2048-games" element={<TwoZeroFourEightGames />} />
         <Route path="/games/floppy-bird" element={<FloppyBird />} />
         <Route path="/games/PacMan" element={<PacMan />} />
