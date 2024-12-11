@@ -28,7 +28,6 @@ const App = () => {
         <Route path='/email-verify' element={<EmailVerify />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/profile' element={<Profile />} />
-
         <Route path="/games" element={<Games />} />
         <Route path="/games/memo-game" element={<MemoGame />} />
         <Route path="/games/2048-games" element={<TwoZeroFourEightGames />} />

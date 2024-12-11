@@ -5,8 +5,8 @@ import { assets } from '../../assets/assets'
 
 const GameCardData = [
     {
-        id: "ColorMemo",
-        title: "ColorMemo",
+        id: "Memo-game",
+        title: "Memo-game",
         image: "https://via.placeholder.com/150",
         players: 40,
     },
