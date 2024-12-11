@@ -8,40 +8,72 @@ const Reward = () => {
     const [userCoins, setUserCoins] = useState(0);
     const [clickedDays, setClickedDays] = useState(new Array(7).fill(false));
 
-    // fetch user's current coins from db
+    // Fetch user's current coins from the backend or localStorage
     useEffect(() => {
         if (userData) {
-            setUserCoins(userData.coins || 0);
+            // First, check if coins are available in localStorage
+            const storedCoins = localStorage.getItem('userCoins');
+            if (storedCoins) {
+                setUserCoins(JSON.parse(storedCoins)); // Use stored coins if available
+            } else {
+                // If no coins in localStorage, fetch from the backend
+                const fetchCoins = async () => {
+                    try {
+                        const { data } = await axios.get(
+                            `${backendUrl}/api/user/get-coins/${userData._id}`,
+                            { withCredentials: true }
+                        );
+                        if (data.success) {
+                            setUserCoins(data.coins);
+                            localStorage.setItem('userCoins', JSON.stringify(data.coins)); // Store coins in localStorage
+                        } else {
+                            toast.error(data.message || 'Error fetching coins');
+                        }
+                    } catch (error) {
+                        console.error('Error fetching coins:', error);
+                        toast.error('An error occurred while fetching coins.');
+                    }
+                };
+                fetchCoins();
+            }
+
+            // Retrieve clicked days from localStorage
+            const storedClickedDays = JSON.parse(localStorage.getItem('clickedDays')) || new Array(7).fill(false);
+            setClickedDays(storedClickedDays);
         }
-    }, [userData]);
+    }, [userData, backendUrl]);
 
     const handleBoxClick = async (index) => {
         if (clickedDays[index]) {
             toast.error("You've already claimed this day's reward!");
             return;
         }
-    
-        // request payload
+
+        // Request payload
         console.log("Sending API request with:", {
-            userId: userData._id, 
-            coins: 1
+            userId: userData._id,
+            coins: 1,
         });
-    
+
         try {
             const { data } = await axios.put(
                 `${backendUrl}/api/user/update-coins`,
                 { userId: userData._id, coins: 1 },
                 { withCredentials: true }
             );
-    
+
             if (data.success) {
                 toast.success('You earned 1 coin!');
-                setUserCoins(data.coins);
-                setClickedDays((prev) => {
-                    const updated = [...prev];
-                    updated[index] = true;
-                    return updated;
-                });
+                setUserCoins(data.coins); // Update coins
+
+                // Store the updated coins in localStorage
+                localStorage.setItem('userCoins', JSON.stringify(data.coins));
+
+                // Update clickedDays and store in localStorage
+                const updatedClickedDays = [...clickedDays];
+                updatedClickedDays[index] = true;
+                setClickedDays(updatedClickedDays);
+                localStorage.setItem('clickedDays', JSON.stringify(updatedClickedDays));
             } else {
                 toast.error(data.message || 'Error updating coins');
             }
@@ -50,7 +82,6 @@ const Reward = () => {
             toast.error('An error occurred while claiming the reward.');
         }
     };
-    
 
     return (
         <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
