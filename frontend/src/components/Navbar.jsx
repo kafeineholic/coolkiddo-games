@@ -42,6 +42,10 @@ const Navbar = () => {
         navigate('/profile');
     };
 
+    const goToReward = () => {
+        navigate('/reward');
+    };
+
     return (
         <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0">
            <img src={assets.game} alt="" className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer" />
@@ -62,6 +66,14 @@ const Navbar = () => {
 
         <li
             onClick={goToProfile}
+            className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-blue-600 cursor-pointer rounded-md transition-all"
+        >
+            <span className="material-icons">account_circle</span>
+            <span className="flex-grow">My Profile</span>
+        </li>
+
+        <li
+            onClick={goToReward}
             className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-blue-600 cursor-pointer rounded-md transition-all"
         >
             <span className="material-icons">account_circle</span>
