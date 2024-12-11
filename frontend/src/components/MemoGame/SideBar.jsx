@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import RestartBtn from "../MemoGame/images/restart-btn.png";
 import ClockBtn from "../MemoGame/images/clock.png";
 import { GameContext } from './context/GameContextProvider';
+import sideBarImg from '../MemoGame/images/sidebar-bg.png'
 
 const SideBar = () => {
 
@@ -12,7 +13,7 @@ const SideBar = () => {
 
       <div className="flex items-center justify-center gap-1 w-64 h-20 md:h-32"
         style={{
-          backgroundImage: "url('../../images/sidebar-bg.png')",
+          backgroundImage: `url(${sideBarImg})`,
           backgroundSize: 'contain',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
