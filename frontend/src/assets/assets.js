@@ -6,6 +6,7 @@ import person_icon from './person_icon.svg'
 import hand_wave from './hand_wave.png'
 import header_img from './header_img.png'
 import game from './game.png'
+import floppybird_bg from './bg.jpg'
 
 export const assets = {
     arrow_icon,
@@ -15,5 +16,6 @@ export const assets = {
     person_icon,
     hand_wave,
     header_img,
-    game
+    game,
+    floppybird_bg
 }
