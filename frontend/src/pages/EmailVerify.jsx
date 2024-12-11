@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Snowfall from 'react-snowfall'; // Import the snowfall library
+import loginBg from '../assets/loginbg.png';
 
 const EmailVerify = () => {
     //send cookie
@@ -82,8 +83,15 @@ const EmailVerify = () => {
 
 
     return (
-        <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
-        bg-gradient-to-r from-[#d96459] to-[#97051D]'>
+        <div
+            className='flex items-center justify-center min-h-screen px-6 sm:px-0'
+            style={{
+                backgroundImage: `url(${loginBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+            }}
+        >
                 <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
             <img onClick={() => navigate('/')}
                 src={assets.game} alt=""
