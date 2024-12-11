@@ -8,6 +8,25 @@ import {
 } from "../TwoZeroFourEightGames/gameLogic";
 import { IoMdRefresh } from "react-icons/io";
 import GameOverPopup from "../TwoZeroFourEightGames/GameOverPopup";
+import { assets } from "../../assets/assets"; // import assets for the navbar
+import { useNavigate } from 'react-router-dom'; // import useNavigate for navigation
+
+// Define the Navbar component here
+const Navbar = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="w-full flex justify-between items-center py-2 px-4 sm:py-3 sm:px-16 absolute top-0 bg-[#40826d] bg-opacity-75 z-10">
+    <img
+      onClick={() => navigate('/')}
+      src={assets.game} // use assets for logo
+      alt="Game Logo"
+      className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer" // Adjusted size
+    />
+    <h1 className="text-xl sm:text-2xl text-white font-bold">2048</h1>
+  </div>
+  
+  );
+};
 
 const TwoZeroFourEightGames = () => {
   const [grid, setGrid] = useState(initializeGrid());
@@ -129,6 +148,7 @@ const TwoZeroFourEightGames = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-900">
+      <Navbar /> {/* Add Navbar here */}
       {!gameStarted ? (
         <div className="flex flex-col items-center">
           <h1 className="text-6xl font-bold mb-4 text-white drop-shadow-lg">
