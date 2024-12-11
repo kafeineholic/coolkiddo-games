@@ -5,6 +5,8 @@ import { AppContext } from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import Snowfall from 'react-snowfall'; // Import the snowfall library
+
 const EmailVerify = () => {
     //send cookie
     axios.defaults.withCredentials = true
@@ -81,13 +83,14 @@ const EmailVerify = () => {
 
     return (
         <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
-    bg-gradient-to-br from-[#EF233C] to-[#97051D]'>
+        bg-gradient-to-r from-[#d96459] to-[#97051D]'>
+                <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
             <img onClick={() => navigate('/')}
                 src={assets.game} alt=""
-                className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer' />
+                className='absolute left-5 sm:left-20 top-5 w-8 h-8 sm:w-12 sm:h-12 cursor-pointer' />
 
             <form onSubmit={onSubmitHandler}
-                className='bg-[#F0F2D5] p-8 rounded-lg shadow-lg w-96 text-sm'>
+                className='bg-[#F8EECB] p-8 rounded-lg shadow-lg w-96 text-sm'>
                 <h1 className='text-[#04361D] text-2xl font-semibold text-center mb-4'>
                     Email Verify OTP</h1>
                 <p className='text-center mb-6 text-[#76BA9D]'>

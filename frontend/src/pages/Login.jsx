@@ -5,6 +5,8 @@ import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
+import Snowfall from 'react-snowfall'; // Import the snowfall library
+
 const Login = () => {
 
     const navigate = useNavigate()
@@ -61,15 +63,16 @@ const Login = () => {
 
     return (
         <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
-    bg-white'>
+        bg-gradient-to-r from-[#d96459] to-[#97051D]'>
+                <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
             <img onClick={() => navigate('/')}
                 src={assets.game} alt=""
-                className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer' />
+                className='absolute left-5 sm:left-20 top-5 w-8 h-8 sm:w-12 sm:h-12 cursor-pointer' />
 
-            <div className='bg-slate-900 p-10 rounded-lg shadow-lg w-full sm:w-96
-       text-indigo-300 text-sm'>
+            <div className='bg-[#F8EECB] p-10 rounded-lg shadow-lg w-full sm:w-96
+       text-[#76BA9D] text-sm'>
 
-                <h2 className='text-3xl font-semibold text-white text-center mb-3'>
+                <h2 className='text-3xl font-semibold text-[#04361D] text-center mb-3'>
                     {state === 'Sign Up' ? 'Create Account' : 'Login'}</h2>
                 <p className='text-center text-sm mb-6'>
                     {state === 'Sign Up' ? 'Create your account' : 'Login to your account!'}</p>
@@ -78,7 +81,7 @@ const Login = () => {
                 <form onSubmit={onSubmitHandler}>
                     {state === 'Sign Up' && (
                         <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5
-        rounded-full bg-[#333A5C]'>
+        rounded-full bg-[#04361D]'>
                             <img src={assets.person_icon} alt="" />
                             <input onChange={e => setName(e.target.value)}
                                 value={name}
@@ -88,7 +91,7 @@ const Login = () => {
 
 
                     <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5
-    rounded-full bg-[#333A5C]'>
+    rounded-full bg-[#04361D]'>
                         <img src={assets.mail_icon} alt="" />
                         <input onChange={e => setEmail(e.target.value)}
                             value={email}
@@ -97,7 +100,7 @@ const Login = () => {
                     </div>
 
                     <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5
-    rounded-full bg-[#333A5C]'>
+    rounded-full bg-[#04361D]'>
                         <img src={assets.lock_icon} alt="" />
                         <input onChange={e => setPassword(e.target.value)}
                             value={password}
@@ -106,11 +109,10 @@ const Login = () => {
                     </div>
 
                     <p onClick={() => navigate('/reset-password')}
-                        className='mb-4 text-indigo-500 cursor-pointer'>
+                        className='mb-4 cursor-pointer'>
                         Forgot Password?</p>
 
-                    <button className='w-full py-2.5 rounded-full bg-gradient-to-r
-      from-indigo-500 to-indigo-900 text-white font-medium'>
+                    <button className='w-full py-2.5 rounded-full bg-[#76BA9D] text-[#04361D] font-medium'>
                         {state}</button>
 
                     {state === 'Sign Up' ?
