@@ -83,7 +83,7 @@ const EmailVerify = () => {
         <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
     bg-gradient-to-br from-[#EF233C] to-[#97051D]'>
             <img onClick={() => navigate('/')}
-                src={assets.logo} alt=""
+                src={assets.game} alt=""
                 className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer' />
 
             <form onSubmit={onSubmitHandler}
