@@ -15,7 +15,7 @@ const PacMan = () => {
           alt="Game Logo"
           className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer" 
         />
-        <h1 className="text-xl sm:text-2xl text-white font-bold">2048</h1>
+        <h1 className="text-xl sm:text-2xl text-white font-bold">PacMan</h1>
       </div>
     );
   };
