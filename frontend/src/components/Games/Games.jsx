@@ -60,7 +60,7 @@ const Games = () => {
 
     return (
         <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
-        bg-white'>
+        bg-[#97051d]'>
             <img
                 src={assets.game}
                 alt=""
@@ -89,7 +89,8 @@ const Games = () => {
                                     <img
                                         src={item.image}
                                         alt={item.title}
-                                        className="w-full h-[200px] object-cover rounded-xl"
+                                        className="w-full h-[200px] object-cover rounded-xl shadow-xl
+                                        transition-transform transform hover:scale-105 hover:shadow-2xl rounded-xl"
                                     />
                                     <div className="text-center">
                                         <p>{item.title}</p>
