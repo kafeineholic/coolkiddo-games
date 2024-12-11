@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const navigate = useNavigate();
   return (
-    <div className="w-full flex justify-between items-center py-2 px-4 sm:py-3 sm:px-16 absolute top-0 bg-[#40826d] bg-opacity-75 z-10">
+    <div className="w-full flex justify-between items-center py-2 px-4 sm:py-3 sm:px-16 absolute top-0 bg-[#40826d] z-10">
       <img
         onClick={() => navigate('/')}
         src={assets.game} 
@@ -20,7 +20,7 @@ const Navbar = () => {
 
 function FloppyBird() {
   return (
-    <div className="relative">
+    <div className="relative pt-16">
       <Navbar />
       <div style={{
         display: 'flex',
