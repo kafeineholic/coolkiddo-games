@@ -72,7 +72,6 @@ const Navbar = () => {
                                 <span className="flex-grow">My Profile</span>
                             </li>
 
-<<<<<<< Updated upstream
         <li
             onClick={goToReward}
             className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-blue-600 cursor-pointer rounded-md transition-all"
