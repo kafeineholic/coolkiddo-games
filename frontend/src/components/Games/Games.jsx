@@ -1,43 +1,51 @@
 import React from "react";
 import { FaFire } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { assets } from '../../assets/assets'
+import { assets } from '../../assets/assets';
+
+import memoGameImg from '../../assets/thumbnail/MemoGame.png'
+import Img2048 from '../../assets/thumbnail/2048.png'
+import FloppyBirdImg from '../../assets/thumbnail/FloppyBird.png'
+import pacmanImg from '../../assets/thumbnail/PACMAN.png'
+import whackAMoleImg from '../../assets/thumbnail/WhackAMole.png'
+import TictactoeImg from '../../assets/thumbnail/TicTacToe.png'
+
 
 const GameCardData = [
     {
         id: "Memo-game",
         title: "Memo-game",
-        image: "https://via.placeholder.com/150",
+        image: memoGameImg,
         players: 40,
     },
     {
         id: "2048-games",
         title: "2048-games",
-        image: "https://via.placeholder.com/150",
+        image: Img2048,
         players: 42,
     },
     {
         id: "Floppy-Bird",
         title: "FloppyBird",
-        image: "https://via.placeholder.com/150",
+        image: FloppyBirdImg,
         players: 45,
     },
     {
         id: "PacMan",
         title: "PacMan",
-        image: "https://via.placeholder.com/150",
+        image: pacmanImg,
         players: 50,
     },
     {
         id: "Tic-Tac-Toe",
         title: "Tic-Tac-Toe",
-        image: "https://via.placeholder.com/150",
+        image: TictactoeImg,
         players: 80,
     },
     {
         id: "WhackAMole",
         title: "WhackAMole",
-        image: "https://via.placeholder.com/150",
+        image: whackAMoleImg,
         players: 70,
     },
 ];
