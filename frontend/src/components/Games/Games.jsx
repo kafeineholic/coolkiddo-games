@@ -11,6 +11,7 @@ import whackAMoleImg from '../../assets/thumbnail/WhackAMole.png'
 import TictactoeImg from '../../assets/thumbnail/TicTacToe.png'
 
 
+
 const GameCardData = [
     {
         id: "Memo-game",
@@ -50,8 +51,26 @@ const GameCardData = [
     },
 ];
 
+ 
+
+
 const Games = () => {
-    const navigate = useNavigate();
+
+    const Navbar = () => {
+        const navigate = useNavigate();
+        return (
+          <div className="w-full flex justify-between items-center py-2 px-4 sm:py-3 sm:px-16 absolute top-0 bg-[#40826d] z-10">
+            <img
+              onClick={() => navigate('/')}
+              src={assets.game} 
+              alt="Game Logo"
+              className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer" 
+            />
+            <h1 className="text-xl sm:text-2xl text-white font-bold">Games</h1>
+          </div>
+        );
+      };
+   
 
     const handleNavigate = (id) => {
         console.log(`Navigating to game with ID: ${id}`);
@@ -61,11 +80,7 @@ const Games = () => {
     return (
         <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
         bg-[#97051d]'>
-            <img
-                src={assets.game}
-                alt=""
-                className="absolute left-5 sm:left-20 top-5 w-10 h-10  cursor-pointer"
-            />
+           <Navbar/>
 
             <section className="py-10 bg-primary text-white">
                 <div className="container">
