@@ -1,44 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 
 const Reward = () => {
-    const [coins, setCoins] = useState(0); // To store the current coin balance
-    const [clickedBoxes, setClickedBoxes] = useState(new Set()); // Track clicked boxes
-
-    // Fetch user coins from the server when component mounts
+    const [coins, setCoins] = useState(0);  
+    const [clickedBoxes, setClickedBoxes] = useState(new Set()); 
+    
+    
+    const { userData, backendUrl, setUserData } = useContext(AppContext);
+    axios.defaults.withCredentials = true
+    
     useEffect(() => {
-        const fetchUserCoins = async () => {
-            try {
-                axios.defaults.withCredentials = true;
-                const response = await axios.get('/api/user/data'); // Modify according to your endpoint
-                setCoins(response.data.coins);
-            } catch (error) {
-                console.error("Error fetching user data:", error);
-            }
-        };
+        if (userData) {
+            setCoins(userData.coins); 
+        }
+    }, [userData]);
 
-        fetchUserCoins();
-    }, []);
-
-    // Handle box click
     const handleBoxClick = async (boxNumber) => {
         if (!clickedBoxes.has(boxNumber)) {
-            clickedBoxes.add(boxNumber);
-            setClickedBoxes(new Set(clickedBoxes));
-
+            const newClickedBoxes = new Set(clickedBoxes);
+            newClickedBoxes.add(boxNumber);
+            setClickedBoxes(newClickedBoxes);
+    
+            const newCoinCount = coins + 1;
+            setCoins(newCoinCount);
+    
             try {
-                const response = await axios.put('/api/user/update-coins'); // Modify according to your endpoint
-                setCoins(response.data.coins); // Update the coin balance
+               
+                const { data } = await axios.put(
+                    `${backendUrl}/api/user/update-coins`,
+                    { userId: userData.id, coins: newCoinCount } 
+                );
+    
+                setUserData(data.userData);
             } catch (error) {
-                console.error("Error updating coins:", error);
+                console.error("Error updating coins:", error.response || error.message);
             }
         }
     };
-
+    
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
             <h1 className="text-2xl font-semibold text-gray-800 mb-4">Reward</h1>
-            <p className="text-lg text-gray-600 mb-6">Coin: {coins}</p>
+            <p className="text-lg text-gray-600 mb-6">Coins: {coins}</p>
             <div className="grid grid-cols-4 gap-4">
                 {[1, 2, 3, 4, 5, 6, 7].map((box) => (
                     <div

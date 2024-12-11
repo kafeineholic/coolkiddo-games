@@ -62,21 +62,41 @@ export const updateUserProfile = async (req, res) => {
     }
 };
 
-//Update User's Coin 
+
+// Update User's Coin
 export const updateUserCoins = async (req, res) => {
     try {
-        const userId = req.user.id; 
+        // Extract and convert coins to a number
+        const { userId, coins } = req.body;
+        const coinValue = Number(coins); // Convert to number
+
+        // Validate the coins value
+        if (isNaN(coinValue) || coinValue <= 0) {
+            return res.status(400).json({ message: "Invalid coin value" });
+        }
+
+        // Find the user by userId
         const user = await userModel.findById(userId);
 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
 
-        user.coins += 1; 
+        // Update the user's coins
+        user.coins = coinValue;
+
+        // Log before saving
+        console.log("Before save:", user);
+
+        // Save the updated user
         await user.save();
 
+        // Log after saving
+        console.log("After save:", user);
+
+        // Respond with the updated coins value
         res.status(200).json({ message: "Coins updated successfully", coins: user.coins });
     } catch (error) {
-        res.status(500).json({ message: "Server error" });
+        res.status(500).json({ message: "Server error", error: error.message });
     }
 };
