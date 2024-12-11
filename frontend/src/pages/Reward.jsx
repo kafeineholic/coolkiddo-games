@@ -8,7 +8,7 @@ const Reward = () => {
     const [userCoins, setUserCoins] = useState(0);
     const [clickedDays, setClickedDays] = useState(new Array(7).fill(false));
 
-    // Fetch user's current coins from the database
+    // fetch user's current coins from db
     useEffect(() => {
         if (userData) {
             setUserCoins(userData.coins || 0);
@@ -21,7 +21,7 @@ const Reward = () => {
             return;
         }
     
-        // Log the request payload
+        // request payload
         console.log("Sending API request with:", {
             userId: userData._id, 
             coins: 1

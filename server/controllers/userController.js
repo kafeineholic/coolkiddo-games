@@ -68,7 +68,7 @@ export const updateUserCoins = async (req, res) => {
     try {
         const { userId, coins } = req.body;
         
-        // Log the received data for debugging
+        
         console.log('Received data:', { userId, coins });
 
         if (!userId || !coins) {
@@ -82,13 +82,13 @@ export const updateUserCoins = async (req, res) => {
             return res.status(404).json({ success: false, message: "User not found" });
         }
 
-        user.coins += coins; // Increment the coins
+        user.coins += coins; // increment coin
         await user.save();
         console.log(`Updated user coins: ${user.coins}`);
 
         res.status(200).json({ success: true, coins: user.coins });
     } catch (error) {
-        console.error("Error updating coins:", error); // Log server-side error
+        console.error("Error updating coins:", error); 
         res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 };
