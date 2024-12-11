@@ -74,7 +74,7 @@ const Navbar = () => {
 
         <li
             onClick={goToReward}
-            className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-yellow-500 cursor-pointer rounded-md transition-all"
+            className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-yellow-600 cursor-pointer rounded-md transition-all"
         >
             <span className="material-icons">card_giftcard</span>
             <span className="flex-grow">My Reward</span>
