@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { assets } from '../../assets/assets';
 
 function FloppyBird() {
     return (
@@ -8,10 +8,11 @@ function FloppyBird() {
             justifyContent: 'center',
             alignItems: 'center',
             width: '100%' ,
-            backgroundImage: `url('https://i.ibb.co/Q9yv5Jk/flappy-bird-set.png')`, // Replace with your image URL
-            backgroundSize: '800px 654px', 
+            backgroundImage: `url(${assets.floppybird_bg})`, // Replace with your image URL
+            backgroundSize: 'auto auto', 
             backgroundRepeat: 'repeat-x', 
-            backgroundPosition: 'left top', 
+           
+            backgroundColor: '#000000'
         }}>
 
             <iframe
