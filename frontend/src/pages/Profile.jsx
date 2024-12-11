@@ -92,9 +92,9 @@ const Profile = () => {
                 <div className="sticky flex flex-col gap-4 p-4 text-sm border-r border-gray-200 top-12 bg-gray-50 rounded-lg shadow-md">
                     <h2 className="pl-3 mb-6 text-2xl font-semibold text-indigo-700">Settings</h2>
                     <a href="#" className="flex items-center px-4 py-3 font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
-                        User Profile
+                        Edit User Profile
                     </a>
-                    <a href="#" className="flex items-center px-4 py-3 font-medium text-indigo-600 bg-gray-100 rounded-lg hover:bg-indigo-200">
+                    {/* <a href="#" className="flex items-center px-4 py-3 font-medium text-indigo-600 bg-gray-100 rounded-lg hover:bg-indigo-200">
                         Account Settings
                     </a>
                     <a href="#" className="flex items-center px-4 py-3 font-medium text-indigo-600 bg-gray-100 rounded-lg hover:bg-indigo-200">
@@ -102,7 +102,7 @@ const Profile = () => {
                     </a>
                     <a href="#" className="flex items-center px-4 py-3 font-medium text-indigo-600 bg-gray-100 rounded-lg hover:bg-indigo-200">
                         PRO Account
-                    </a>
+                    </a> */}
                 </div>
             </aside>
 
