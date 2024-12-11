@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 
-import Snowfall from 'react-snowfall'; // Import the snowfall library
+import Snowfall from 'react-snowfall'; 
 import loginBg from '../assets/loginbg.png';
 
 const ResetPassword = () => {
