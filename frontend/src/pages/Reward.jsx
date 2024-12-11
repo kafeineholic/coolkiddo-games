@@ -22,22 +22,31 @@ const Reward = () => {
             newClickedBoxes.add(boxNumber);
             setClickedBoxes(newClickedBoxes);
     
-            const newCoinCount = coins + 1;
+            const newCoinCount = (coins || 0) + 1;
             setCoins(newCoinCount);
     
             try {
-               
+                console.log("Request payload:", {
+                    userId: userData?.id,
+                    coins: newCoinCount
+                });
+    
                 const { data } = await axios.put(
                     `${backendUrl}/api/user/update-coins`,
-                    { userId: userData.id, coins: newCoinCount } 
+                    { userId: userData?.id, coins: newCoinCount }
                 );
     
                 setUserData(data.userData);
             } catch (error) {
-                console.error("Error updating coins:", error.response || error.message);
+                console.error("Error updating coins:", {
+                    message: error.response?.data?.message || error.message,
+                    data: error.response?.data,
+                    status: error.response?.status
+                });
             }
         }
     };
+    
     
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
