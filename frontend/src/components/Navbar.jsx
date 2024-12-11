@@ -42,6 +42,10 @@ const Navbar = () => {
         navigate('/profile');
     };
 
+    const goToReward = () => {
+        navigate('/reward');
+    };
+
     return (
         <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0">
            <img src={assets.game} alt="" className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer" />
@@ -67,6 +71,8 @@ const Navbar = () => {
             <span className="material-icons">account_circle</span>
             <span className="flex-grow">My Profile</span>
         </li>
+
+        
 
         <li
             onClick={logout}
