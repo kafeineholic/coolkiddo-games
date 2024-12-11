@@ -7,6 +7,7 @@ const userRouter = express.Router();
 
 userRouter.get('/data', userAuth , getUserData)
 userRouter.put('/update-profile', userAuth, updateUserProfile);
+userRouter.put('/update-coins', userAuth, updateUserCoins);
 
 
 export default userRouter;

@@ -61,3 +61,22 @@ export const updateUserProfile = async (req, res) => {
         res.status(500).json({ success: false, message: 'Failed to update profile.', error: error.message });
     }
 };
+
+//Update User's Coin 
+export const updateUserCoins = async (req, res) => {
+    try {
+        const userId = req.user.id; 
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        user.coins += 1; 
+        await user.save();
+
+        res.status(200).json({ message: "Coins updated successfully", coins: user.coins });
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+};
