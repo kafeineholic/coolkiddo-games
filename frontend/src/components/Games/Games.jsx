@@ -1,6 +1,7 @@
 import React from "react";
 import { FaFire } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { assets } from '../../assets/assets'
 
 const GameCardData = [
     {
@@ -50,7 +51,12 @@ const Games = () => {
     };
 
     return (
-        <>
+        <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
+        bg-white'>
+           <img onClick={()=>navigate('/')}
+           src={assets.game} alt="" 
+           className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer'/>
+    
             <section className="py-10 bg-primary text-white">
                 <div className="container">
                     {/* Header section */}
@@ -88,7 +94,7 @@ const Games = () => {
                     </div>
                 </div>
             </section>
-        </>
+        </div>
     );
 };
 
