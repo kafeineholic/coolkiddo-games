@@ -53,10 +53,12 @@ const Games = () => {
     return (
         <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
         bg-white'>
-           <img onClick={()=>navigate('/')}
-           src={assets.game} alt="" 
-           className='absolute left-5 sm:left-20 top-5 w-28 sm:w-32 cursor-pointer'/>
-    
+            <img
+                src={assets.game}
+                alt=""
+                className="absolute left-5 sm:left-20 top-5 w-10 h-10  cursor-pointer"
+            />
+
             <section className="py-10 bg-primary text-white">
                 <div className="container">
                     {/* Header section */}
