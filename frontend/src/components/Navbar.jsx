@@ -48,36 +48,36 @@ const Navbar = () => {
 
     return (
         <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0">
-            <img src={assets.game} alt="" className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer" />
+           <img src={assets.game} alt="" className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer" />
             {userData ? (
                 <div className="w-8 h-8 flex justify-center items-center rounded-full bg-black text-white relative group">
                     {userData.name[0].toUpperCase()}
                     <div className="absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-10">
-                        <ul className="list-none m-0 p-4 bg-white shadow-md rounded-lg text-sm w-[200px]">
-                            {!userData.isAccountVerified && (
-                                <li
-                                    onClick={sendVerificatinonOtp}
-                                    className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-green-700 cursor-pointer rounded-md transition-all"
-                                >
-                                    <span className="material-icons">mail</span>
-                                    <span className="flex-grow">Verify Email</span>
-                                </li>
-                            )}
-
-                            <li
-                                onClick={goToProfile}
-                                className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-blue-600 cursor-pointer rounded-md transition-all"
-                            >
-                                <span className="material-icons">account_circle</span>
-                                <span className="flex-grow">My Profile</span>
-                            </li>
+    <ul className="list-none m-0 p-4 bg-white shadow-md rounded-lg text-sm w-[200px]">
+        {!userData.isAccountVerified && (
+            <li
+                onClick={sendVerificatinonOtp}
+                className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-green-700 cursor-pointer rounded-md transition-all"
+            >
+                <span className="material-icons">mail</span>
+                <span className="flex-grow">Verify Email</span>
+            </li>
+        )}
 
         <li
-            onClick={goToReward}
+            onClick={goToProfile}
             className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-blue-600 cursor-pointer rounded-md transition-all"
         >
             <span className="material-icons">account_circle</span>
             <span className="flex-grow">My Profile</span>
+        </li>
+
+        <li
+            onClick={goToReward}
+            className="flex items-center gap-3 py-2 px-3 hover:bg-blue-100 hover:text-yellow-600 cursor-pointer rounded-md transition-all"
+        >
+            <span className="material-icons">card_giftcard</span>
+            <span className="flex-grow">My Reward</span>
         </li>
 
         <li
@@ -89,17 +89,6 @@ const Navbar = () => {
         </li>
     </ul>
 </div>
-=======
-                            <li
-                                onClick={logout}
-                                className="flex items-center gap-3 py-2 px-3 hover:bg-red-100 hover:text-red-600 cursor-pointer rounded-md transition-all"
-                            >
-                                <span className="material-icons">logout</span>
-                                <span className="flex-grow">Log Out</span>
-                            </li>
-                        </ul>
-                    </div>
->>>>>>> Stashed changes
 
                 </div>
             ) : (

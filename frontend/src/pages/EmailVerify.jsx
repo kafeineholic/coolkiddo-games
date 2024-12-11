@@ -98,10 +98,10 @@ const EmailVerify = () => {
                 className='absolute left-5 sm:left-20 top-5 w-8 h-8 sm:w-12 sm:h-12 cursor-pointer' />
 
             <form onSubmit={onSubmitHandler}
-                className='bg-[#F8EECB] p-8 rounded-lg shadow-lg w-96 text-sm'>
+                className='bg-white bg-opacity-80 p-8 rounded-3xl shadow-lg w-96 text-sm'>
                 <h1 className='text-[#04361D] text-2xl font-semibold text-center mb-4'>
                     Email Verify OTP</h1>
-                <p className='text-center mb-6 text-[#76BA9D]'>
+                <p className='text-center mb-6 text-[#40826D]'>
                     Enter the 6-digit code sent to your email</p>
 
                 <div className='flex justify-between mb-8' onPaste={handlePaste}>
@@ -111,7 +111,7 @@ const EmailVerify = () => {
                             maxLength="1"
                             key={index}
                             required
-                            className='w-12 h-12 bg-[#04361D] text-[#76BA9D] text-center 
+                            className='w-12 h-12 bg-white bg-opacity-60 text-[#40826D] text-center 
                                         text-xl rounded-md'
                             ref={(e) => (inputRefs.current[index] = e)}
                             onInput={(e) => handleInput(e, index)}
@@ -121,7 +121,7 @@ const EmailVerify = () => {
                 </div>
 
 
-                <button className='w-full py-3 bg-[#76BA9D] text-[#04361D]  rounded-full '>
+                <button className='w-full py-3 bg-[#40826d] text-[#F0F2D5]  rounded-full '>
                     Verify Email
                 </button>
             </form>

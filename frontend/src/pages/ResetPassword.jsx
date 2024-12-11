@@ -6,6 +6,7 @@ import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 
 import Snowfall from 'react-snowfall'; // Import the snowfall library
+import loginBg from '../assets/loginbg.png';
 
 const ResetPassword = () => {
 
@@ -98,8 +99,15 @@ const ResetPassword = () => {
   }
 
   return (
-    <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
-    bg-gradient-to-r from-[#d96459] to-[#97051D]'>
+    <div
+      className='flex items-center justify-center min-h-screen px-6 sm:px-0'
+      style={{
+        backgroundImage: `url(${loginBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
       <img onClick={() => navigate('/')}
         src={assets.game} alt=""
@@ -108,14 +116,14 @@ const ResetPassword = () => {
 
       {/* Form 1 Enter email for send otp forgot password*/}
       {!isEmailSent && (
-        <form onSubmit={onSubmitEmail} className='bg-[#F8EECB] p-8 rounded-lg shadow-lg w-96 text-sm'>
+        <form onSubmit={onSubmitEmail} className='bg-white bg-opacity-80 p-8 rounded-3xl shadow-lg w-96 text-sm'>
           <h1 className='text-[#04361D] text-2xl font-semibold text-center mb-4'>
             Reset Password
           </h1>
-          <p className='text-center mb-6 text-[#76BA9D]'>
+          <p className='text-center mb-6 text-[#40826D]'>
             Enter your registered email address
           </p>
-          <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-[#04361D]'>
+          <div className='mb-4 flex items-center gap-3 w-full px-5 py-2.5 rounded-full bg-white bg-opacity-60'>
             <img src={assets.mail_icon} alt="" className='w-3 h-3' />
             <input
               type="email"
@@ -127,7 +135,7 @@ const ResetPassword = () => {
             />
           </div>
 
-          <button className="w-full py-2.5 bg-[#76BA9D] text-[#04361D] rounded-full mt-3">
+          <button className="w-full py-2.5 bg-[#40826d] text-[#F0F2D5] rounded-full mt-3">
             Submit
           </button>
         </form>
