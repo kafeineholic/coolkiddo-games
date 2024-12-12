@@ -142,7 +142,9 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red"
+                                <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
+                                    rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("WhackAMole")}>
                                     PLAY GAMES
                                 </Button>
@@ -169,9 +171,9 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button
-                                    size="lg"
-                                    color="red"
+                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
+                                    rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("Tic-Tac-Toe")}>
                                     PLAY GAMES
                                 </Button>
@@ -198,7 +200,9 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red"
+                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
+                                    rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("PacMan")}>
                                     PLAY GAMES
                                 </Button>
@@ -223,7 +227,9 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red"
+                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
+                                    rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("Floppy-Bird")}>
                                     PLAY GAMES
                                 </Button>
@@ -250,7 +256,9 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red"
+                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
+                                    rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("2048-games")}>
                                     PLAY GAMES
                                 </Button>
@@ -277,7 +285,9 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red"
+                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
+                                    rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("Memo-game")}>
                                     PLAY GAMES
                                 </Button>
@@ -298,9 +308,7 @@ const Games = () => {
                     {/* Header section */}
                     <div className="flex justify-between">
                         <h1 className="text-3xl font-bold">Games</h1>
-                        {/* <button className="bg-gray-400/50 text-white rounded-xl px-4 py-2">
-                            View All
-                        </button> */}
+                        
                     </div>
                     {/* Trending Games Card section */}
                     <div>
