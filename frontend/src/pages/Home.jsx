@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../components/navbar'
+import Navbar from '../components/Navbar';
 import Header from '../components/Header'
 import Leaderboard from './Leaderboard';
 import webBg from '../assets/webbg.png';
