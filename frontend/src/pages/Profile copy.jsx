@@ -112,19 +112,22 @@ const Profile = () => {
         >
             <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
             <Navbar />
-
-            <div className="grid grid-cols-3 gap-4 mt-16 relative z-10 pt-10">
-                <div className="bg-red-500 p-8 text-white">
-                    <h2 className="pl-3 mb-6 text-2xl font-semibold text-[#04361D]">Settings</h2>
-                    <a href="/profile" className="flex items-center px-4 py-3 font-semibold text-[#F0F2D5] bg-[#40826D] rounded-lg hover:bg-[#04361D]">
-                        Edit User Profile
-                    </a>
+            <div className="flex flex-col md:flex-row gap-4 pt-20">
+                <div className="py-4 md:w-1/3 lg:w-1/4">
+                    <div className="sticky flex flex-col gap-4 p-4 text-sm border-r border-gray-200 top-16 bg-gray-50 rounded-lg shadow-md">
+                        <h2 className="pl-3 mb-6 text-2xl font-semibold text-[#04361D]">Settings</h2>
+                        <a href="/profile" className="flex items-center px-4 py-3 font-semibold text-[#F0F2D5] bg-[#40826D] rounded-lg hover:bg-[#04361D]">
+                            Edit User Profile
+                        </a>
+                    </div>
                 </div>
-                <div className="col-span-5 bg-blue-500 p-8 text-white">
-                    <h2 className="text-3xl font-bold text-[#04361D]">User Profile</h2>
-                    <div className="grid max-w-2xl mx-auto mt-8">
-                        <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
-                        <img
+
+                <main className="w-full min-h-screen py-1 md:w-4/5 lg:w-4/5 flex-grow">
+                    <div className="p-4 bg-gray-50 rounded-lg shadow-md">
+                        <h2 className="text-3xl font-bold text-[#04361D]">User Profile</h2>
+                        <div className="grid max-w-2xl mx-auto mt-8">
+                            <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
+                                <img
                                     className="object-cover w-40 h-40 p-2 rounded-full ring-4 ring-white ring-offset-2 ring-offset-blue-100"
                                     src={userData.profilePicture || ProfilePic}
                                     alt="User avatar"
@@ -220,12 +223,14 @@ const Profile = () => {
                                 ) : (
                                     <p className="text-gray-500">User Data is not available.</p>
                                 )}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </main>
             </div>
-        </div>
 
+
+        </div>
 
     );
 };

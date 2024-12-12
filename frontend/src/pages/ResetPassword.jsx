@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import axios from 'axios'
 
-import Snowfall from 'react-snowfall'; 
+import Snowfall from 'react-snowfall';
 import loginBg from '../assets/loginbg.png';
 
 const ResetPassword = () => {
@@ -111,7 +111,9 @@ const ResetPassword = () => {
       <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
       <img onClick={() => navigate('/')}
         src={assets.game} alt=""
-        className='absolute left-5 sm:left-20 top-5 w-8 h-8 sm:w-12 sm:h-12 cursor-pointer' />
+        className='absolute left-5 sm:left-20 top-5 h-20 sm:h-12 cursor-pointer'
+        style={{ width: "auto" }}
+      />
 
 
       {/* Form 1 Enter email for send otp forgot password*/}

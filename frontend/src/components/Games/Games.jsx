@@ -308,7 +308,6 @@ const Games = () => {
                     {/* Header section */}
                     <div className="flex justify-between">
                         <h1 className="text-3xl font-bold">Games</h1>
-                        
                     </div>
                     {/* Trending Games Card section */}
                     <div>
