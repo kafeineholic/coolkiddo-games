@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 import Reward from './pages/Reward.jsx'
 import Leaderboard from './pages/Leaderboard.jsx'
 
-import ProtectedRoute from './context/ProtectedRoute.jsx'
+
 import Games from './components/Games/Games.jsx'
 import MemoGame from './components/Games/MemoGame.jsx'
 import TwoZeroFourEightGames from './components/Games/TwoZeroFourEightGames.jsx'
@@ -33,14 +33,14 @@ const App = () => {
         <Route path='/profile' element={<Profile />} />
         <Route path="/reward" element={<Reward />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
-
-        <Route path="/games" element={<ProtectedRoute element={Games} />} />
-        <Route path="/games/memo-game" element={<ProtectedRoute element={MemoGame} />} />
-        <Route path="/games/2048-games" element={<ProtectedRoute element={TwoZeroFourEightGames} />} />
-        <Route path="/games/floppy-bird" element={<ProtectedRoute element={FloppyBird} />} />
-        <Route path="/games/PacMan" element={<ProtectedRoute element={PacMan} />} />
-        <Route path="/games/Tic-Tac-Toe" element={<ProtectedRoute element={TicTacToe} />} />
-        <Route path="/games/WhackAMole" element={<ProtectedRoute element={WhackAMole} />} />
+        
+        <Route path="/games" element={<Games />} />
+        <Route path="/games/memo-game" element={<MemoGame />} />
+        <Route path="/games/2048-games" element={<TwoZeroFourEightGames />} />
+        <Route path="/games/floppy-bird" element={<FloppyBird />} />
+        <Route path="/games/PacMan" element={<PacMan />} />
+        <Route path="/games/Tic-Tac-Toe" element={<TicTacToe />} />
+        <Route path="/games/WhackAMole" element={<WhackAMole />} />
 
       </Routes>
       <Footer />

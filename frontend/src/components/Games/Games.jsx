@@ -57,34 +57,11 @@ const GameCardData = [
 
 
 const Games = () => {
-    const [games, setGames] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  
     const [autoPlay, setAutoPlay] = useState(true); 
 
     const navigate = useNavigate(); 
 
-    useEffect(() => {
-        const fetchGames = async () => {
-            try {
-                const response = await fetch("http://localhost:4040/games");
-                if (!response.ok) {
-                    throw new Error("Failed to fetch games");
-                }
-                const data = await response.json();
-                setGames(data);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchGames();
-    }, []); // Empty dependency array ensures this effect runs only once when the component mounts
-
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>Error: {error}</div>;
 
     // Navbar rendering
     const Navbar = () => {

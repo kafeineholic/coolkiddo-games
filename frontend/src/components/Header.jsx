@@ -16,9 +16,8 @@ const Header = () => {
          toast.success('Enjoy!')
          navigate('/games')
       } else {
-       
-         toast.error('Please log in first')
-         navigate('/login')
+       toast.error('Log In first or you will be miss out')
+        navigate('/login')
       }
    }
 

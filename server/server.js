@@ -28,9 +28,6 @@ app.get("/", (req, res) => res.send("API Working"));
 app.use('/api/auth',authRouter)
 app.use('/api/user',userRouter)
 
-app.get('/api/verify', userAuth, (req, res) => {
-    res.status(200).json({ success: true, message: 'User authenticated successfully' });
-  });
 
 
 // Start Server
