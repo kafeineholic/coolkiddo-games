@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaFire } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { assets } from '../../assets/assets';
@@ -57,8 +57,13 @@ const GameCardData = [
 
 
 const Games = () => {
-    const navigate = useNavigate();
-    const [autoPlay, setAutoPlay] = useState(true);
+  
+    const [autoPlay, setAutoPlay] = useState(true); 
+
+    const navigate = useNavigate(); 
+
+
+    // Navbar rendering
     const Navbar = () => {
         return (
             <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0 bg-[transparent]">
@@ -74,7 +79,7 @@ const Games = () => {
         );
     };
 
-
+    // Handle navigation to specific game
     const handleNavigate = (id) => {
         console.log(`Navigating to game with ID: ${id}`);
         navigate(`/games/${id}`);
