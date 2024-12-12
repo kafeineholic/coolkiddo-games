@@ -5,7 +5,6 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/mongodb.js"; // connect db
 import authRouter from "./routes/authRoutes.js"; // router user
 import userRouter from "./routes/userRoutes.js"; //user name/verify
-import userAuth from "./middleware/userAuth.js";
 
 
 const app = express();
