@@ -350,7 +350,7 @@ const Games = () => {
             <footer
                 className="text-white bg-cover bg-center p-4">
                 {/* Footer Bottom */}
-                <div className="text-[#366a56] text-center py-4">
+                <div className="text-[#f0f2d5] text-center py-4">
                     <p className="text-sm">© 2024 HOLLYBUZZZ Inc. All rights reserved.</p>
                 </div>
             </footer>
