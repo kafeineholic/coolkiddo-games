@@ -2,7 +2,7 @@ import React from "react";
 import { FaFire } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { assets } from '../../assets/assets';
-import { Carousel , iconButton } from "@material-tailwind/react";
+import { Carousel, iconButton, Typography, Button } from "@material-tailwind/react";
 // import { Carousel } from 'flowbite-react';
 
 
@@ -87,67 +87,79 @@ const Games = () => {
 
 
             <section className="w-full mb-10 mt-20 flex-shrink-0"> {/* Add width and margin bottom */}
-            <Carousel 
-                className="rounded-l w-full mt-16"
+                <Carousel
+                    className="rounded-l w-full mt-16"
 
-                autoplay = {true}
-                loop = {true}
-                
-                // Added margin bottom to separate from cards
-                navigation={({ setActiveIndex, activeIndex, length }) => (
+                    // autoplay={true}
+                    // loop={true}
+                    // autoplayDelay={10000}
 
-                    
-                    <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
-                        {new Array(length).fill("").map((_, i) => (
-                            <span
-                                key={i}
-                                className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
-                                    activeIndex === i 
-                                    ? "w-8 bg-white" 
-                                    : "w-4 bg-white/50"
-                                }`}
-                                onClick={() => setActiveIndex(i)}
-                            />
-                        ))}
+                    // Added margin bottom to separate from cards
+                    navigation={({ setActiveIndex, activeIndex, length }) => (
+
+
+                        <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+                            {new Array(length).fill("").map((_, i) => (
+                                <span
+                                    key={i}
+                                    className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${activeIndex === i
+                                        ? "w-8 bg-white"
+                                        : "w-4 bg-white/50"
+                                        }`}
+                                    onClick={() => setActiveIndex(i)}
+                                />
+                            ))}
+                        </div>
+
+                    )}
+
+                >
+                    <div className="relative h-full w-[100vw] group">
+                        <img
+                            src={whackAMoleImg}
+                            className="h-[400px] w-full object-cover object-bottom"
+                        />
                     </div>
-                    
-                )}
-                
-            >
-                <div className="relative h-full w-[100vw]">
-                <img
-                    src={whackAMoleImg}
-                    alt="image 1"
-                    className="h-[400px] w-full object-cover object-bottom"
-                />
-                </div>
-                
-                <div className="relative h-full w-[100vw]">
-                <img
-                    src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-                    alt="image 2"
-                    className="h-[400px] w-full object-cover"
-                />
-                </div>
-                <div className="relative h-full w-[100vw]">
-                <img
-                    src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-                    alt="image 2"
-                    className="h-[400px] w-full object-cover"
-                />
-                </div>
-                <div className="relative h-full w-[100vw]">
-                <img
-                    src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-                    alt="image 2"
-                    className="h-[400px] w-full object-cover"
-                />
-                </div>
-                
-            </Carousel>
+                    <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
+                        <div className="w-3/4 text-center md:w-2/4">
+                            <Typography
+                                variant="h1"
+                                color="white"
+                                className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                            >
+                                Whack A Mole
+                            </Typography>
+                        </div>
+                        <div className="flex justify-center gap-2">
+                            <Button size="lg" color="white">
+                                PLAY GAMES
+                            </Button>
+                        </div>
+                    </div>
 
-            
-        </section>
+                    <div className="relative h-full w-[100vw]">
+                        <img
+                            src={TictactoeImg}
+                            className="h-[400px] w-full object-cover"
+                        />
+                    </div>
+                    <div className="relative h-full w-[100vw]">
+                        <img
+                            src={pacmanImg}
+                            className="h-[400px] w-full object-cover"
+                        />
+                    </div>
+                    <div className="relative h-full w-[100vw]">
+                        <img
+                            src={FloppyBirdImg}
+                            className="h-[400px] w-full object-cover object-up"
+                        />
+                    </div>
+
+                </Carousel>
+
+
+            </section>
 
 
 

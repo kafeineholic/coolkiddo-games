@@ -9,7 +9,7 @@ const Header = () => {
    return (
       <div className='flex flex-col items-center mt-20 px-4 text-center text-[#04361D]'>
          <img src={assets.header_img} alt=""
-            className='w-36 h-36 rounded-full mb-6' />
+            className=' h-36 w-100 rounded-full mb-6' />
 
          <h1 className='flex items-center gap-2 text-xl sm:text-3xl font-medium mb-2'>
             Hey {userData ? userData.name : 'Gamer'}!
