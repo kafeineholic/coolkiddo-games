@@ -8,22 +8,19 @@ import footerBg from '../assets/footerbg.png';
 const Footer = () => {
     return (
         <footer
-        className="fixed inset-x-0 bottom-0 text-white pt-40 z-50"
-        style={{
-                backgroundImage: `url(${footerBg})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center center',
-                backgroundRepeat: 'no-repeat',
-            }}
-        >
-            {/* Footer Content */}
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 p-5 bg-opacity-70 bg-transparent ">
-            </div>
-            {/* Footer Bottom */}
-            <div className="text-[#366a56] text-center py-4">
-                <p className="text-sm">© 2024 HOLLYBUZZZ Inc. All rights reserved.</p>
-            </div>
-        </footer>
+    className="relative text-white mt-5 z-10 h-[500px] overflow-hidden"
+    style={{
+        backgroundImage: `url(${footerBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center bottom',
+        backgroundRepeat: 'no-repeat',
+    }}
+>
+    {/* Footer Bottom */}
+    <div className="absolute bottom-0 left-0 right-0 text-[#366a56] text-center py-4">
+        <p className="text-sm">© 2024 HOLLYBUZZZ Inc. All rights reserved.</p>
+    </div>
+</footer>
 
     );
 };
