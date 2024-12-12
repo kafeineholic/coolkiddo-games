@@ -139,7 +139,6 @@ export const claimCoinForDay = async (req, res) => {
     }
 };
 
-
 export const getLeaderboard = async (req, res) => {
     try {
         
