@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/mongodb.js"; // connect db
 import authRouter from "./routes/authRoutes.js"; // router user
 import userRouter from "./routes/userRoutes.js"; //user name/verify
+import userAuth from "./middleware/userAuth.js";
 
 
 const app = express();
@@ -26,6 +27,10 @@ app.use(cors({
 app.get("/", (req, res) => res.send("API Working"));
 app.use('/api/auth',authRouter)
 app.use('/api/user',userRouter)
+
+app.get('/api/verify', userAuth, (req, res) => {
+    res.status(200).json({ success: true, message: 'User authenticated successfully' });
+  });
 
 
 // Start Server

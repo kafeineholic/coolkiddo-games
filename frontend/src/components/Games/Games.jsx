@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaFire } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { assets } from '../../assets/assets';
@@ -57,8 +57,36 @@ const GameCardData = [
 
 
 const Games = () => {
-    const navigate = useNavigate();
-    const [autoPlay, setAutoPlay] = useState(true);
+    const [games, setGames] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [autoPlay, setAutoPlay] = useState(true); 
+
+    const navigate = useNavigate(); 
+
+    useEffect(() => {
+        const fetchGames = async () => {
+            try {
+                const response = await fetch("http://localhost:4040/games");
+                if (!response.ok) {
+                    throw new Error("Failed to fetch games");
+                }
+                const data = await response.json();
+                setGames(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchGames();
+    }, []); // Empty dependency array ensures this effect runs only once when the component mounts
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    // Navbar rendering
     const Navbar = () => {
         return (
             <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0 bg-[transparent]">
@@ -74,7 +102,7 @@ const Games = () => {
         );
     };
 
-
+    // Handle navigation to specific game
     const handleNavigate = (id) => {
         console.log(`Navigating to game with ID: ${id}`);
         navigate(`/games/${id}`);
