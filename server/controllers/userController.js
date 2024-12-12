@@ -117,13 +117,13 @@ export const claimCoinForDay = async (req, res) => {
             return res.status(400).json({
                 success: false, 
                 message: "You have already claimed your coin for today.",
-                remainingTime: 86400 - timeDiff // Remaining time until next claim
+                remainingTime: 86400 - timeDiff // Remaining time 
             });
         }
 
         
         user.coins += 1;
-        user.lastClaimTime = currentDate;  // Store the current date as the last claim time
+        user.lastClaimTime = currentDate;  // Store the current date 
         await user.save();
 
         // Return the updated coin count and last claim time
@@ -131,7 +131,7 @@ export const claimCoinForDay = async (req, res) => {
             success: true, 
             coins: user.coins, 
             lastClaimTime: user.lastClaimTime.toISOString(),
-            remainingTime: 86400 // Full 24 hours until next claim
+            remainingTime: 86400 
         });
     } catch (error) {
         console.error("Error claiming coin:", error);
@@ -140,3 +140,37 @@ export const claimCoinForDay = async (req, res) => {
 };
 
 
+export const getLeaderboard = async (req, res) => {
+    try {
+        
+        const loggedInUserId = req.body.userId;  
+
+        
+        if (!loggedInUserId) {
+            return res.status(400).json({ success: false, message: 'User ID not provided' });
+        }
+
+        // fetch coin an descending
+        const users = await userModel.find().sort({ coins: -1 });
+
+        // create data
+        const leaderboard = users.map((user, index) => {
+            const isCurrentUser = user._id.toString() === loggedInUserId;
+            return {
+                rank: index + 1,
+                name: isCurrentUser ? "me" : user.name,  // if it's current user -> me
+                coins: user.coins,
+                isCurrentUser: isCurrentUser  // track  current user
+            };
+        });
+
+        // Return the leaderboard as a response
+        res.json({
+            success: true,
+            leaderboard,
+        });
+    } catch (error) {
+       
+        res.status(500).json({ success: false, message: 'Internal Server Error', error: error.message });
+    }
+};
