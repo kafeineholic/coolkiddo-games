@@ -92,7 +92,7 @@ const EmailVerify = () => {
                 backgroundRepeat: 'no-repeat',
             }}
         >
-                <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
+            <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
             <img onClick={() => navigate('/')}
                 src={assets.game} alt=""
                 className='absolute left-5 sm:left-20 top-5 w-8 h-8 sm:w-12 sm:h-12 cursor-pointer' />
