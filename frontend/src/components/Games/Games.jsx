@@ -59,7 +59,6 @@ const GameCardData = [
 const Games = () => {
     const navigate = useNavigate();
     const [autoPlay, setAutoPlay] = useState(true);
-
     const Navbar = () => {
         return (
             <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0 bg-[transparent]">
