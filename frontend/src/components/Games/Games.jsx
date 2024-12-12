@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFire } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { assets } from '../../assets/assets';
@@ -56,9 +56,9 @@ const GameCardData = [
 
 
 
-
 const Games = () => {
     const navigate = useNavigate();
+    const [autoPlay, setAutoPlay] = useState(true);
 
     const Navbar = () => {
         return (
@@ -80,18 +80,20 @@ const Games = () => {
         navigate(`/games/${id}`);
     };
 
+    
     return (
         <div className='flex flex-col items-center justify-center min-h-screen px-6 sm:px-0
         bg-[#97051d]'>
             <Navbar />
-
-
-            <section className="w-full mb-10 mt-20 flex-shrink-0"> {/* Add width and margin bottom */}
+        
+            <section className="w-full mb-10 mt-20 flex-shrink-0 group relative"
+            onMouseEnter={() => setAutoPlay(false)} // Stop autoplay on hover
+            onMouseLeave={() => setAutoPlay(true)} > {/* Add width and margin bottom */}
                 <Carousel
                     className="rounded-l w-full mt-16"
 
-                    autoplay={true}
-                    autoplayDelay={8000}
+                    autoplay={autoPlay}
+                    autoplayDelay={1000}
 
                     loop={true}
 
@@ -133,7 +135,8 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red">
+                                <Button size="lg" color="red"
+                                onClick={() => handleNavigate("WhackAMole")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -159,7 +162,10 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red">
+                                <Button 
+                                size="lg" 
+                                color="red"
+                                onClick={() => handleNavigate("Tic-Tac-Toe")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -185,7 +191,8 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red">
+                                <Button size="lg" color="red"
+                                onClick={() => handleNavigate("PacMan")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -209,7 +216,8 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red">
+                                <Button size="lg" color="red"
+                                onClick={() => handleNavigate("Floppy-Bird")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -235,7 +243,8 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red">
+                                <Button size="lg" color="red"
+                                onClick={() => handleNavigate("2048-games")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -261,7 +270,8 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button size="lg" color="red">
+                                <Button size="lg" color="red"
+                                onClick={() => handleNavigate("Memo-game")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
