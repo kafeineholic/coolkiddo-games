@@ -3,6 +3,16 @@ import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+
+const formatTime = (seconds) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+};
+
 const Reward = () => {
     const { userData, backendUrl } = useContext(AppContext);
     const [userCoins, setUserCoins] = useState(0);
@@ -75,7 +85,7 @@ const Reward = () => {
             }
         } catch (error) {
             console.error('Error claiming coin:', error);
-            toast.error('An error occurred while claiming your coin.');
+            toast.error('You have already claimed your reward for today.');
         }
     };
 
@@ -133,7 +143,7 @@ const Reward = () => {
                 {isClaimed ? (
                     <div>
                         <p className="text-sm mb-2">You have already claimed your coin today.</p>
-                        <p className="text-sm mb-4">Next claim available in: <strong>{remainingTime} seconds</strong></p>
+                        <p className="text-sm mb-4">Next claim available in: <strong>{formatTime(remainingTime)}</strong></p>
                     </div>
                 ) : (
                     <div>
@@ -152,7 +162,7 @@ const Reward = () => {
             {isClaimed && remainingTime > 0 && (
                 <div className="text-center mt-6">
                     <p className="text-sm mb-4">Your next claim is available in:</p>
-                    <p className="text-lg font-bold">{remainingTime} seconds</p>
+                    <p className="text-lg font-bold">{formatTime(remainingTime)}</p>
                 </div>
             )}
 
@@ -166,3 +176,41 @@ const Reward = () => {
 };
 
 export default Reward;
+export const claimCoinForDay = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const currentDate = new Date();
+
+        const user = await userModel.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ success: false, message: "User not found" });
+        }
+
+        const lastClaimTime = user.lastClaimTime;
+        const timeDiff = lastClaimTime ? Math.floor((currentDate - lastClaimTime) / 1000) : 86401; // Time difference in seconds
+
+        if (timeDiff < 86400) {  
+            return res.status(400).json({
+                success: false, 
+                message: "You have already claimed your coin for today.",
+                remainingTime: 86400 - timeDiff // Remaining time until next claim
+            });
+        }
+
+        user.coins += 1;
+        user.lastClaimTime = currentDate;  // Store the current date as the last claim time
+        await user.save();
+
+        // Return the updated coin count and last claim time
+        res.status(200).json({
+            success: true, 
+            coins: user.coins, 
+            lastClaimTime: user.lastClaimTime.toISOString(),
+            remainingTime: 86400 // Full 24 hours until next claim
+        });
+    } catch (error) {
+        console.error("Error claiming coin:", error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+};
