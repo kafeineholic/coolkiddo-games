@@ -24,7 +24,7 @@ const Header = () => {
 
 
    return (
-      <div className='flex flex-col items-center mt-20 px-4 text-center text-[#04361D]'>
+      <div className='flex flex-col items-center mt-20 px-4 pb-40 text-center text-[#04361D]'>
          {/* <img src={assets.header_img} alt=""
             className=' h-36 w-100 rounded-full mb-6' /> */}
 
@@ -52,12 +52,3 @@ const Header = () => {
 }
 
 export default Header
-
-
-
-
-
-
-
-
-
