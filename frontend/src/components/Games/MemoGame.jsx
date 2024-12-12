@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 const MemoGame = () => {
   
-  
   const Navbar = () => {
     const navigate = useNavigate();
     return (

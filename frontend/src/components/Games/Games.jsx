@@ -2,6 +2,8 @@ import React from "react";
 import { FaFire } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { assets } from '../../assets/assets';
+import { Carousel,iconButton } from "@material-tailwind/react";
+
 
 import memoGameImg from '../../assets/thumbnail/MemoGame.png'
 import Img2048 from '../../assets/thumbnail/2048.png'
@@ -9,7 +11,6 @@ import FloppyBirdImg from '../../assets/thumbnail/FloppyBird.png'
 import pacmanImg from '../../assets/thumbnail/PACMAN.png'
 import whackAMoleImg from '../../assets/thumbnail/WhackAMole.png'
 import TictactoeImg from '../../assets/thumbnail/TicTacToe.png'
-
 
 
 const GameCardData = [
@@ -51,27 +52,26 @@ const GameCardData = [
     },
 ];
 
- 
+
 
 
 const Games = () => {
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const Navbar = () => {
-        
         return (
-          <div className="w-full flex justify-between items-center py-2 px-4 sm:py-3 sm:px-16 absolute top-0 bg-[#40826d] z-10">
-            <img
-              onClick={() => navigate('/')}
-              src={assets.game} 
-              alt="Game Logo"
-              className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer" 
-            />
-            <h1 className="text-xl sm:text-2xl text-white font-bold">Games</h1>
-          </div>
+            <div className="w-full flex justify-between items-center py-2 px-4 sm:py-3 sm:px-16 absolute top-0 bg-[#40826d] z-10">
+                <img
+                    onClick={() => navigate('/')}
+                    src={assets.game}
+                    alt="Game Logo"
+                    className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer"
+                />
+                <h1 className="text-xl sm:text-2xl text-white font-bold">Games</h1>
+            </div>
         );
-      };
-   
+    };
+
 
     const handleNavigate = (id) => {
         console.log(`Navigating to game with ID: ${id}`);
@@ -79,11 +79,58 @@ const navigate = useNavigate();
     };
 
     return (
-        <div className='flex items-center justify-center min-h-screen px-6 sm:px-0
+        <div className='flex flex-col items-center justify-center min-h-screen px-6 sm:px-0
         bg-[#97051d]'>
-           <Navbar/>
+            <Navbar />
 
-            <section className="py-10 bg-primary text-white pt-16 mt-5">
+
+            <section className="w-full mb-10 mt-20 flex-shrink-0"> {/* Add width and margin bottom */}
+            <Carousel 
+                className="rounded-l w-full mt-16 overflow-x-hidden"
+
+                
+                
+                // Added margin bottom to separate from cards
+                navigation={({ setActiveIndex, activeIndex, length }) => (
+
+                    
+                    <div className="absolute bottom-4 left-2/4 z-50 flex -translate-x-2/4 gap-2">
+                        {new Array(length).fill("").map((_, i) => (
+                            <span
+                                key={i}
+                                className={`block h-1 cursor-pointer rounded-2xl transition-all content-[''] ${
+                                    activeIndex === i 
+                                    ? "w-8 bg-white" 
+                                    : "w-4 bg-white/50"
+                                }`}
+                                onClick={() => setActiveIndex(i)}
+                            />
+                        ))}
+                    </div>
+                    
+                )}
+                
+            >
+                {/* Your carousel images */}
+                <img
+                    src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+                    alt="image 1"
+                    className="h-[400px] w-full object-cover"
+                />
+                <img
+                    src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+                    alt="image 2"
+                    className="h-[400px] w-full object-cover"
+                />
+                {/* ... other images ... */}
+            </Carousel>
+
+            
+        </section>
+
+
+
+            <section className="py-10 bg-primary text-white pt-16">
                 <div className="container">
                     {/* Header section */}
                     <div className="flex justify-between">
