@@ -45,9 +45,8 @@ const Header = () => {
            rounded-full px-8 py-3 text-lg font-semibold hover:bg-gray-100'>
             Seize Your Legend
          </button>
-
-
       </div>
+      
    )
 }
 
