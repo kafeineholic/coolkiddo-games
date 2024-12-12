@@ -4,6 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { assets } from '../assets/assets';
 import Confetti from 'react-confetti';
+import BackgroundMusic from '../components/backgroundMusic'
 
 
 
@@ -13,7 +14,7 @@ const formatTime = (seconds) => {
     const minutes = Math.floor((seconds % 3600) / 60);
     const remainingSeconds = seconds % 60;
 
-    
+
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 };
 
@@ -21,15 +22,15 @@ const Reward = () => {
     const { userData, backendUrl } = useContext(AppContext);
     const [userCoins, setUserCoins] = useState(0);
     const [isClaimed, setIsClaimed] = useState(false);
-    const [remainingTime, setRemainingTime] = useState(0); 
+    const [remainingTime, setRemainingTime] = useState(0);
     const [loading, setLoading] = useState(true);
 
-    
+
     const userId = userData?._id;
 
-    const [showConfetti, setShowConfetti] = useState(true); 
+    const [showConfetti, setShowConfetti] = useState(true);
 
-    
+
 
     // fetch coins and claim status
     const fetchCoins = async () => {
@@ -82,8 +83,8 @@ const Reward = () => {
 
             if (data.success) {
                 setUserCoins(data.coins);
-                setIsClaimed(true); 
-                setRemainingTime(86400); 
+                setIsClaimed(true);
+                setRemainingTime(86400);
 
                 // update last claim in localstorage
                 localStorage.setItem('lastClaimTime', new Date().toISOString());
@@ -105,7 +106,7 @@ const Reward = () => {
                 setRemainingTime((prev) => {
                     if (prev <= 1) {
                         clearInterval(interval); // Stop interval when time reaches 0
-                        setIsClaimed(false); 
+                        setIsClaimed(false);
                         return 0;
                     }
                     return prev - 1;
@@ -145,6 +146,7 @@ const Reward = () => {
 
     return (
         <div className="reward-container max-w-4xl mx-auto p-4 mt-20">
+            <BackgroundMusic />
             <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={70} recycle={true} />
             <h1 className="text-2xl font-bold text-center mb-4">My Rewards 🎉</h1>
             <p className="text-center text-lg mb-4">You currently have {userCoins} coins</p>
@@ -158,33 +160,32 @@ const Reward = () => {
                     </div>
                 ) : (
 
-                    
+
                     <div className="flex flex-col items-center justify-center p-6  bg-opacity-70 rounded-lg shadow-xl max-w-lg mx-auto mt-10">
-                       
-                    <div className="text-center mb-6">
-                      {!isClaimed && remainingTime === 0 && (
-                        <img
-                        src={assets.rewards}
-                        alt="Reward Box"
-                        className="w-56 h-56 mx-auto mb-6 transition-transform transform hover:scale-105"
-                       
-                       
-                    />
-                      )}
+
+                        <div className="text-center mb-6">
+                            {!isClaimed && remainingTime === 0 && (
+                                <img
+                                    src={assets.rewards}
+                                    alt="Reward Box"
+                                    className="w-56 h-56 mx-auto mb-6 transition-transform transform hover:scale-105"
+
+
+                                />
+                            )}
+                        </div>
+                        <p className="text-gray-600 text-lg mb-4 font-semibold">Claim your coin now!</p>
+                        <p className="text-gray-500 text-sm mb-6">Hurry up and claim your reward before it expires</p>
+                        <button
+                            className={`bg-gradient-to-r from-blue-500 to-teal-500 text-white py-3 px-6 rounded-lg shadow-md hover:scale-105 transition-all duration-300 ease-in-out ${isClaimed || remainingTime > 0 ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                            onClick={claimCoin}
+                            disabled={isClaimed || remainingTime > 0}
+                        >
+                            {isClaimed ? 'Claimed' : remainingTime > 0 ? `Claim in ${remainingTime}s` : 'Claim Coin'}
+                        </button>
                     </div>
-                    <p className="text-gray-600 text-lg mb-4 font-semibold">Claim your coin now!</p>
-                    <p className="text-gray-500 text-sm mb-6">Hurry up and claim your reward before it expires</p>
-                    <button
-                      className={`bg-gradient-to-r from-blue-500 to-teal-500 text-white py-3 px-6 rounded-lg shadow-md hover:scale-105 transition-all duration-300 ease-in-out ${
-                        isClaimed || remainingTime > 0 ? 'opacity-50 cursor-not-allowed' : ''
-                      }`}
-                      onClick={claimCoin}
-                      disabled={isClaimed || remainingTime > 0}
-                    >
-                      {isClaimed ? 'Claimed' : remainingTime > 0 ? `Claim in ${remainingTime}s` : 'Claim Coin'}
-                    </button>
-                  </div>
-                  
+
 
                 )}
             </div>
@@ -196,7 +197,7 @@ const Reward = () => {
                 </div>
             )}
 
-           
+
         </div>
     );
 };

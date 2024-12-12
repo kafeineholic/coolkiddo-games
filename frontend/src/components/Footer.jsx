@@ -8,20 +8,17 @@ import footerBg from '../assets/footerbg.png';
 const Footer = () => {
     return (
         <footer
-            className="relative text-white pt-20 -mt-40 "
+            className="relative text-white bg-transparent pt-20"
             style={{
                 backgroundImage: `url(${footerBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
                 backgroundRepeat: 'no-repeat',
-                zIndex: 10, // ทำให้ฟุตเตอร์อยู่เหนือเนื้อหาอื่น ๆ
-                paddingBottom: '60px', // ปรับเพิ่มขนาด padding ด้านล่างหากต้องการให้ภาพเห็นทั้งหมด
             }}
         >
             {/* Footer Content */}
-            <div className="gap-10 py-20   text-[#366a56] text-center">
-                <p className="text-sm">© 2024 HOLLYBUZZZ Inc. All rights reserved.</p>
-
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 p-10 bg-opacity-70 bg-white ">
+                {/* Your sections */}
             </div>
             {/* Footer Bottom */}
             <div className="text-[#366a56] text-center py-4">

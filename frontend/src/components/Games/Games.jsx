@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaFire } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { assets } from '../../assets/assets';
 import { Carousel, iconButton, Typography, Button } from "@material-tailwind/react";
-// import { Carousel } from 'flowbite-react';
 
 import gameBg from '../Games/gamebg.png';
+import BackgroundMusic from '../backgroundMusic'
 
 import memoGameImg from '../../assets/thumbnail/MemoGame.png'
 import Img2048 from '../../assets/thumbnail/2048.png'
@@ -57,10 +57,16 @@ const GameCardData = [
 
 
 const Games = () => {
-    const navigate = useNavigate();
+
+
     const [autoPlay, setAutoPlay] = useState(true);
+    const navigate = useNavigate();
+
+
+    // Navbar rendering
     const Navbar = () => {
         return (
+
             <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0 bg-[transparent]">
                 <img
                     onClick={() => navigate('/')}
@@ -74,7 +80,7 @@ const Games = () => {
         );
     };
 
-
+    // Handle navigation to specific game
     const handleNavigate = (id) => {
         console.log(`Navigating to game with ID: ${id}`);
         navigate(`/games/${id}`);
@@ -82,6 +88,7 @@ const Games = () => {
 
 
     return (
+
         <div className='flex flex-col items-center justify-center min-h-screen px-6 sm:px-0'
             style={{
                 backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url(${gameBg})`,
@@ -91,7 +98,11 @@ const Games = () => {
                 width: '100%',
                 minHeight: '100vh',
             }}>
+
+            
+
             <Navbar />
+            <BackgroundMusic />
 
             <section className="w-full mb-10 mt-20 flex-shrink-0 group relative"
                 onMouseEnter={() => setAutoPlay(false)} // Stop autoplay on hover
@@ -171,7 +182,7 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
                                 text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
                                     rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("Tic-Tac-Toe")}>
@@ -200,7 +211,7 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
                                 text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
                                     rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("PacMan")}>
@@ -227,7 +238,7 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
                                 text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
                                     rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("Floppy-Bird")}>
@@ -256,7 +267,7 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
                                 text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
                                     rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("2048-games")}>
@@ -285,7 +296,7 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                            <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+                                <Button className='btn shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
                                 text-white bg-red-500 ease-out hover:translate-y-1 transition-all 
                                     rounded-full px-8 py-3 text-lg font-semibold hover:bg-red-600'
                                     onClick={() => handleNavigate("Memo-game")}>
@@ -301,13 +312,12 @@ const Games = () => {
             </section>
 
 
-
-
             <section className="py-10 bg-primary text-white pt-16">
                 <div className="container">
                     {/* Header section */}
                     <div className="flex justify-between">
                         <h1 className="text-3xl font-bold">Games</h1>
+
                     </div>
                     {/* Trending Games Card section */}
                     <div>

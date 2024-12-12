@@ -111,7 +111,7 @@ const ResetPassword = () => {
       <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
       <img onClick={() => navigate('/')}
         src={assets.game} alt=""
-        className='absolute left-5 sm:left-20 top-5 h-20 sm:h-12 cursor-pointer'
+        className='absolute left-5 sm:left-20 top-5 h-20 sm:h-12 object-contain cursor-pointer'
         style={{ width: "auto" }}
       />
 
