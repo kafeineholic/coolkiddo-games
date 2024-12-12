@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Header from '../components/Header';
 import webBg from '../assets/webbg.png';
 import Snowfall from 'react-snowfall'; // Import the snowfall library
+import BackgroundMusic from '../components/backgroundMusic';
+
 
 const Home = () => {
+
   return (
-    <div>
-     
+    <div >
+
       <div
         className='flex flex-col items-center justify-center min-h-screen'
         style={{
@@ -18,12 +21,15 @@ const Home = () => {
           width: '100%',
           minHeight: '100vh',
         }}
+        
       >
-       
+        
         <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
         
         <Navbar />
+        <BackgroundMusic />
         <Header />
+        
       </div>
 
     
