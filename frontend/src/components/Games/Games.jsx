@@ -81,22 +81,22 @@ const Games = () => {
         navigate(`/games/${id}`);
     };
 
-    
+
     return (
         <div className='flex flex-col items-center justify-center min-h-screen px-6 sm:px-0'
-        style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url(${gameBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            width:'100%',
-            minHeight: '100vh',
-          }}>
+            style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url(${gameBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                width: '100%',
+                minHeight: '100vh',
+            }}>
             <Navbar />
-        
+
             <section className="w-full mb-10 mt-20 flex-shrink-0 group relative"
-            onMouseEnter={() => setAutoPlay(false)} // Stop autoplay on hover
-            onMouseLeave={() => setAutoPlay(true)} > {/* Add width and margin bottom */}
+                onMouseEnter={() => setAutoPlay(false)} // Stop autoplay on hover
+                onMouseLeave={() => setAutoPlay(true)} > {/* Add width and margin bottom */}
                 <Carousel
                     className="rounded-l w-full mt-16"
 
@@ -144,7 +144,7 @@ const Games = () => {
                             </div>
                             <div className="flex justify-center gap-2">
                                 <Button size="lg" color="red"
-                                onClick={() => handleNavigate("WhackAMole")}>
+                                    onClick={() => handleNavigate("WhackAMole")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -170,10 +170,10 @@ const Games = () => {
                                 </Typography>
                             </div>
                             <div className="flex justify-center gap-2">
-                                <Button 
-                                size="lg" 
-                                color="red"
-                                onClick={() => handleNavigate("Tic-Tac-Toe")}>
+                                <Button
+                                    size="lg"
+                                    color="red"
+                                    onClick={() => handleNavigate("Tic-Tac-Toe")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -200,7 +200,7 @@ const Games = () => {
                             </div>
                             <div className="flex justify-center gap-2">
                                 <Button size="lg" color="red"
-                                onClick={() => handleNavigate("PacMan")}>
+                                    onClick={() => handleNavigate("PacMan")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -225,7 +225,7 @@ const Games = () => {
                             </div>
                             <div className="flex justify-center gap-2">
                                 <Button size="lg" color="red"
-                                onClick={() => handleNavigate("Floppy-Bird")}>
+                                    onClick={() => handleNavigate("Floppy-Bird")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -252,7 +252,7 @@ const Games = () => {
                             </div>
                             <div className="flex justify-center gap-2">
                                 <Button size="lg" color="red"
-                                onClick={() => handleNavigate("2048-games")}>
+                                    onClick={() => handleNavigate("2048-games")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
@@ -279,7 +279,7 @@ const Games = () => {
                             </div>
                             <div className="flex justify-center gap-2">
                                 <Button size="lg" color="red"
-                                onClick={() => handleNavigate("Memo-game")}>
+                                    onClick={() => handleNavigate("Memo-game")}>
                                     PLAY GAMES
                                 </Button>
                             </div>
