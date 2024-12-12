@@ -196,8 +196,6 @@ const Reward = () => {
                     <p className="text-lg font-bold">{formatTime(remainingTime)}</p>
                 </div>
             )}
-
-
         </div>
     );
 };

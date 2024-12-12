@@ -15,7 +15,7 @@ const Footer = () => {
                 backgroundPosition: 'center bottom',
                 backgroundRepeat: 'no-repeat',
                 top: 'auto',
-                bottom: '-500px',
+                bottom: '-950px',
             }}
         >
             {/* Footer Bottom */}
