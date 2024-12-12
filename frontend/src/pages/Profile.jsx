@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import Snowfall from 'react-snowfall'; // Import the snowfall library
 import profileBg from '../assets/profilebg.png';
 import ProfilePic from '../assets/profile.png';
+import BackgroundMusic from '../components/backgroundMusic'
 
 
 const Profile = () => {
@@ -83,6 +84,7 @@ const Profile = () => {
     // If userData is null, show loading screen
     if (userData === null) {
         return (
+            
             <div className="min-h-screen flex items-center justify-center"
                 style={{
                     backgroundImage: `url(${profileBg})`,
@@ -106,7 +108,7 @@ const Profile = () => {
                 backgroundRepeat: 'no-repeat',
             }}>
             <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
-
+            <BackgroundMusic />
             <aside className="hidden py-4 md:w-1/3 lg:w-1/4 md:block">
                 <div className="sticky flex flex-col gap-4 p-4 text-sm border-r border-gray-200 top-12 bg-gray-50 rounded-lg shadow-md">
                     <h2 className="pl-3 mb-6 text-2xl font-semibold text-[#04361D]">Settings</h2>

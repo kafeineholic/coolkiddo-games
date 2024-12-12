@@ -5,6 +5,7 @@ import { assets } from '../../assets/assets';
 import { Carousel, iconButton, Typography, Button } from "@material-tailwind/react";
 
 import gameBg from '../Games/gamebg.png';
+import BackgroundMusic from '../backgroundMusic'
 
 import memoGameImg from '../../assets/thumbnail/MemoGame.png'
 import Img2048 from '../../assets/thumbnail/2048.png'
@@ -57,7 +58,6 @@ const GameCardData = [
 
 const Games = () => {
 
-    < backgroundMusic />
 
     const [autoPlay, setAutoPlay] = useState(true);
     const navigate = useNavigate();
@@ -102,6 +102,7 @@ const Games = () => {
             
 
             <Navbar />
+            <BackgroundMusic />
 
             <section className="w-full mb-10 mt-20 flex-shrink-0 group relative"
                 onMouseEnter={() => setAutoPlay(false)} // Stop autoplay on hover
