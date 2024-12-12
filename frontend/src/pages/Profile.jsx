@@ -9,6 +9,7 @@ import Snowfall from 'react-snowfall'; // Import the snowfall library
 import profileBg from '../assets/profilebg.png';
 import ProfilePic from '../assets/profile.png';
 import BackgroundMusic from '../components/backgroundMusic'
+import Navbar from '../components/Navbar';
 
 
 const Profile = () => {
@@ -84,7 +85,7 @@ const Profile = () => {
     // If userData is null, show loading screen
     if (userData === null) {
         return (
-            
+
             <div className="min-h-screen flex items-center justify-center"
                 style={{
                     backgroundImage: `url(${profileBg})`,
@@ -100,14 +101,18 @@ const Profile = () => {
     }
 
     return (
-        <div className="bg-white w-full flex flex-col gap-5 px-4 md:px-16 lg:px-28 md:flex-row text-[#161931]"
+        <div
+            className='flex flex-col items-center justify-center min-h-screen'
             style={{
                 backgroundImage: `url(${profileBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
-            }}>
+                width: '100%',
+                minHeight: '100vh',
+            }}>            
             <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
+            <Navbar/>
             <BackgroundMusic />
             <aside className="hidden py-4 md:w-1/3 lg:w-1/4 md:block">
                 <div className="sticky flex flex-col gap-4 p-4 text-sm border-r border-gray-200 top-12 bg-gray-50 rounded-lg shadow-md">
