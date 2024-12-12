@@ -85,7 +85,7 @@ const Reward = () => {
             }
         } catch (error) {
             console.error('Error claiming coin:', error);
-            toast.error('You have already claimed your reward for today.');
+            toast.error('You have already claimed reward for today.');
         }
     };
 
