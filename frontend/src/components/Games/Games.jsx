@@ -2,7 +2,9 @@ import React from "react";
 import { FaFire } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { assets } from '../../assets/assets';
-import { Carousel,iconButton } from "@material-tailwind/react";
+import { Carousel , iconButton } from "@material-tailwind/react";
+// import { Carousel } from 'flowbite-react';
+
 
 
 import memoGameImg from '../../assets/thumbnail/MemoGame.png'
@@ -86,9 +88,10 @@ const Games = () => {
 
             <section className="w-full mb-10 mt-20 flex-shrink-0"> {/* Add width and margin bottom */}
             <Carousel 
-                className="rounded-l w-full mt-16 overflow-x-hidden"
+                className="rounded-l w-full mt-16"
 
-                
+                autoplay = {true}
+                loop = {true}
                 
                 // Added margin bottom to separate from cards
                 navigation={({ setActiveIndex, activeIndex, length }) => (
@@ -111,22 +114,41 @@ const Games = () => {
                 )}
                 
             >
-                {/* Your carousel images */}
+                <div className="relative h-full w-[100vw]">
                 <img
-                    src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+                    src={whackAMoleImg}
                     alt="image 1"
-                    className="h-[400px] w-full object-cover"
+                    className="h-[400px] w-full object-cover object-bottom"
                 />
+                </div>
+                
+                <div className="relative h-full w-[100vw]">
                 <img
                     src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
                     alt="image 2"
                     className="h-[400px] w-full object-cover"
                 />
-                {/* ... other images ... */}
+                </div>
+                <div className="relative h-full w-[100vw]">
+                <img
+                    src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+                    alt="image 2"
+                    className="h-[400px] w-full object-cover"
+                />
+                </div>
+                <div className="relative h-full w-[100vw]">
+                <img
+                    src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
+                    alt="image 2"
+                    className="h-[400px] w-full object-cover"
+                />
+                </div>
+                
             </Carousel>
 
             
         </section>
+
 
 
 
