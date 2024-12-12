@@ -7,7 +7,7 @@ const Reward = () => {
     const { userData, backendUrl } = useContext(AppContext);
     const [userCoins, setUserCoins] = useState(0);
     const [claimedDays, setClaimedDays] = useState([false, false, false, false, false, false, false]); // 7 days of the week
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
 
     const userId = userData?._id;
 
@@ -24,9 +24,13 @@ const Reward = () => {
 
             if (data.success) {
                 setUserCoins(data.coins);
-                
+
+                // Set claimedDays from the API, and also ensure localStorage is synced.
                 const updatedClaimedDays = Array.isArray(data.claimedDays) ? data.claimedDays : [false, false, false, false, false, false, false];
                 setClaimedDays(updatedClaimedDays);
+
+                // Persist claimedDays in localStorage for persistence across page reloads
+                localStorage.setItem('claimedDays', JSON.stringify(updatedClaimedDays));
             } else {
                 toast.error(data.message || 'Failed to fetch coins');
             }
@@ -34,7 +38,7 @@ const Reward = () => {
             console.error('Error fetching coins:', error.message);
             toast.error('An error occurred while fetching your coins.');
         }
-        setLoading(false); 
+        setLoading(false);
     };
 
     const claimCoin = async (dayIndex) => {
@@ -59,31 +63,43 @@ const Reward = () => {
                 const newClaimedDays = [...claimedDays];
                 newClaimedDays[dayIndex] = true;
                 setClaimedDays(newClaimedDays);
+
+                // Persist the updated claimedDays to localStorage
+                localStorage.setItem('claimedDays', JSON.stringify(newClaimedDays));
+                toast.success('Successfully Claimed Coin');
             } else {
                 toast.error(data.message || 'Failed to claim coin');
             }
         } catch (error) {
             console.error('Error claiming coin:', error);
-            toast.error('An error occurred while claiming your coin.');
-            
+            toast.error('You have already claim coin for today.');
+
             // In case of an error (e.g., 400 Bad Request), update the UI state to reflect the claim was unsuccessful
             if (error.response?.status === 400) {
-                // Mark the day as claimed in the frontend if the backend response indicates so
                 const newClaimedDays = [...claimedDays];
                 newClaimedDays[dayIndex] = true;
                 setClaimedDays(newClaimedDays);
+
+                // Persist the updated claimedDays to localStorage
+                localStorage.setItem('claimedDays', JSON.stringify(newClaimedDays));
             }
         }
     };
 
     useEffect(() => {
+        // Load claimedDays from localStorage on component mount
+        const savedClaimedDays = localStorage.getItem('claimedDays');
+        if (savedClaimedDays) {
+            setClaimedDays(JSON.parse(savedClaimedDays));
+        }
+
         if (userData) {
-            fetchCoins();  
+            fetchCoins();
         }
     }, [userData]);
 
     if (loading) {
-        return <div className="spinner">Loading...</div>; 
+        return <div className="spinner">Loading...</div>;
     }
 
     if (!userData) {
