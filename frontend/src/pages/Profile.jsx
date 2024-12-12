@@ -107,7 +107,7 @@ const Profile = () => {
             toast.error(error.message);
         }
     };
-    
+
     const goToReward = () => {
         navigate('/reward');
     };
@@ -130,7 +130,7 @@ const Profile = () => {
 
             <div className="grid grid-cols-3 gap-4 mt-16 relative z-10 pt-10 pb-50">
                 {/* Edit User Profile Section */}
-                <div className="col-span-1 bg-[#F0F2D5] bg-opacity-90 p-5 text-white rounded-xl">
+                <div className="col-span-1 bg-[#F0F2D5] bg-opacity-90 p-5 text-white rounded-xl w-50 h-40">
                     <h2 className="pl-3 mb-6 text-2xl font-semibold text-[#04361D]">Settings</h2>
                     <a href="/profile" className="flex items-center px-4 py-3 font-semibold text-[#F0F2D5] bg-[#40826D] rounded-lg hover:bg-[#04361D]">
                         Edit User Profile
@@ -142,11 +142,9 @@ const Profile = () => {
                     <div className="grid max-w-2xl mx-auto mt-8">
                         {/* User Information */}
                         <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
-                            <img
-                                className="object-cover w-40 h-40 p-2 rounded-full ring-4 ring-white ring-offset-2 ring-offset-blue-100"
-                                src={userData.profilePicture || ProfilePic}
-                                alt="User avatar"
-                            />
+                            <div className="w-40 h-40 p-2 flex justify-center items-center rounded-full bg-black text-white text-3xl relative group ring-4 ring-white ring-offset-2 ring-offset-blue-100">
+                                {userData.name[0].toUpperCase()}
+                            </div>
                             <div className="flex flex-col space-y-3 sm:ml-8">
                                 <button
                                     onClick={goToReward}
@@ -245,7 +243,7 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
-            </div>                
+            </div>
         </div>
 
 
