@@ -43,8 +43,8 @@ const Leaderboard = () => {
 
     if (loading) {
         return (
-            <div className="text-center py-10">
-                <div className="spinner">Loading...</div>
+            <div className="text-center py-10 text-blue-950">
+                <div className="spinner">Please Log in first to see Leaderboard...</div>
             </div>
         );
     }

@@ -2,6 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { assets } from '../assets/assets';
+import Confetti from 'react-confetti';
+
+
 
 
 const formatTime = (seconds) => {
@@ -17,12 +21,17 @@ const Reward = () => {
     const { userData, backendUrl } = useContext(AppContext);
     const [userCoins, setUserCoins] = useState(0);
     const [isClaimed, setIsClaimed] = useState(false);
-    const [remainingTime, setRemainingTime] = useState(0); // Time in seconds
+    const [remainingTime, setRemainingTime] = useState(0); 
     const [loading, setLoading] = useState(true);
 
+    
     const userId = userData?._id;
 
-    // Fetch coins and claim status
+    const [showConfetti, setShowConfetti] = useState(true); 
+
+    
+
+    // fetch coins and claim status
     const fetchCoins = async () => {
         if (!userId) {
             console.error('User ID not found');
@@ -40,12 +49,12 @@ const Reward = () => {
 
                 if (lastClaimTime) {
                     const timeDiff = Math.floor((new Date().getTime() - new Date(lastClaimTime).getTime()) / 1000);
-                    if (timeDiff < 86400) { // Less than 24 hours
+                    if (timeDiff < 86400) { // less than 24hrs
                         setIsClaimed(true);
-                        setRemainingTime(86400 - timeDiff); // Remaining time in seconds
+                        setRemainingTime(86400 - timeDiff); // remaining time
                     } else {
                         setIsClaimed(false);
-                        setRemainingTime(0); // Reset the remaining time
+                        setRemainingTime(0); // reset
                     }
                 } else {
                     setIsClaimed(false);
@@ -61,7 +70,7 @@ const Reward = () => {
         setLoading(false);
     };
 
-    // Claim the coin and update the backend and UI
+    // claim the coin / update backend
     const claimCoin = async () => {
         if (isClaimed) {
             toast.error('You have already claimed your coin today.');
@@ -73,10 +82,10 @@ const Reward = () => {
 
             if (data.success) {
                 setUserCoins(data.coins);
-                setIsClaimed(true); // Update isClaimed to true after successful claim
-                setRemainingTime(86400); // Reset the remaining time to 24 hours
+                setIsClaimed(true); 
+                setRemainingTime(86400); 
 
-                // Update last claim time in localStorage
+                // update last claim in localstorage
                 localStorage.setItem('lastClaimTime', new Date().toISOString());
 
                 toast.success('Successfully claimed your coin!');
@@ -89,14 +98,14 @@ const Reward = () => {
         }
     };
 
-    // Countdown logic for remaining time
+    // countdown logic 
     useEffect(() => {
         if (remainingTime > 0) {
             const interval = setInterval(() => {
                 setRemainingTime((prev) => {
                     if (prev <= 1) {
                         clearInterval(interval); // Stop interval when time reaches 0
-                        setIsClaimed(false); // Reset claim status after 24 hours
+                        setIsClaimed(false); 
                         return 0;
                     }
                     return prev - 1;
@@ -107,14 +116,14 @@ const Reward = () => {
         }
     }, [remainingTime]);
 
-    // Fetch data and check claim status
+    // fetch data and check claim status
     useEffect(() => {
         if (userData) {
             fetchCoins();
         }
     }, [userData]);
 
-    // Reset claim status if more than 24 hours passed since last claim
+    // reset claim status if more than 24 hours passed since last claim
     useEffect(() => {
         const lastClaimTime = localStorage.getItem('lastClaimTime');
         if (lastClaimTime) {
@@ -135,27 +144,48 @@ const Reward = () => {
     }
 
     return (
-        <div className="reward-container max-w-4xl mx-auto p-4">
-            <h1 className="text-2xl font-bold text-center mb-4">My Rewards</h1>
-            <p className="text-center text-lg mb-4">You have <strong>{userCoins}</strong> coins.</p>
+        <div className="reward-container max-w-4xl mx-auto p-4 mt-20">
+            <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={70} recycle={true} />
+            <h1 className="text-2xl font-bold text-center mb-4">My Rewards 🎉</h1>
+            <p className="text-center text-lg mb-4">You currently have {userCoins} coins</p>
 
-            <div className="text-center mt-6">
+
+            <div className="text-center mt-10">
                 {isClaimed ? (
                     <div>
                         <p className="text-sm mb-2">You have already claimed your coin today.</p>
                         <p className="text-sm mb-4">Next claim available in: <strong>{formatTime(remainingTime)}</strong></p>
                     </div>
                 ) : (
-                    <div>
-                        <p className="text-sm mb-4">Claim your coin now!</p>
-                        <button
-                            className="bg-blue-500 text-white py-2 px-4 rounded disabled:opacity-50"
-                            onClick={claimCoin}
-                            disabled={isClaimed || remainingTime > 0}
-                        >
-                            Claim Coin
-                        </button>
+
+                    
+                    <div className="flex flex-col items-center justify-center p-6  bg-opacity-70 rounded-lg shadow-xl max-w-lg mx-auto mt-10">
+                       
+                    <div className="text-center mb-6">
+                      {!isClaimed && remainingTime === 0 && (
+                        <img
+                        src={assets.rewards}
+                        alt="Reward Box"
+                        className="w-56 h-56 mx-auto mb-6 transition-transform transform hover:scale-105"
+                       
+                       
+                    />
+                      )}
                     </div>
+                    <p className="text-gray-600 text-lg mb-4 font-semibold">Claim your coin now!</p>
+                    <p className="text-gray-500 text-sm mb-6">Hurry up and claim your reward before it expires</p>
+                    <button
+                      className={`bg-gradient-to-r from-blue-500 to-teal-500 text-white py-3 px-6 rounded-lg shadow-md hover:scale-105 transition-all duration-300 ease-in-out ${
+                        isClaimed || remainingTime > 0 ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
+                      onClick={claimCoin}
+                      disabled={isClaimed || remainingTime > 0}
+                    >
+                      {isClaimed ? 'Claimed' : remainingTime > 0 ? `Claim in ${remainingTime}s` : 'Claim Coin'}
+                    </button>
+                  </div>
+                  
+
                 )}
             </div>
 
@@ -166,51 +196,9 @@ const Reward = () => {
                 </div>
             )}
 
-            <div className="text-center mt-6">
-                {!isClaimed && remainingTime === 0 && (
-                    <img src="path_to_image.jpg" alt="Reward Box" className="w-48 h-48 mx-auto mb-4" />
-                )}
-            </div>
+           
         </div>
     );
 };
 
 export default Reward;
-export const claimCoinForDay = async (req, res) => {
-    try {
-        const { userId } = req.params;
-        const currentDate = new Date();
-
-        const user = await userModel.findById(userId);
-
-        if (!user) {
-            return res.status(404).json({ success: false, message: "User not found" });
-        }
-
-        const lastClaimTime = user.lastClaimTime;
-        const timeDiff = lastClaimTime ? Math.floor((currentDate - lastClaimTime) / 1000) : 86401; // Time difference in seconds
-
-        if (timeDiff < 86400) {  
-            return res.status(400).json({
-                success: false, 
-                message: "You have already claimed your coin for today.",
-                remainingTime: 86400 - timeDiff // Remaining time until next claim
-            });
-        }
-
-        user.coins += 1;
-        user.lastClaimTime = currentDate;  // Store the current date as the last claim time
-        await user.save();
-
-        // Return the updated coin count and last claim time
-        res.status(200).json({
-            success: true, 
-            coins: user.coins, 
-            lastClaimTime: user.lastClaimTime.toISOString(),
-            remainingTime: 86400 // Full 24 hours until next claim
-        });
-    } catch (error) {
-        console.error("Error claiming coin:", error);
-        res.status(500).json({ success: false, message: "Internal Server Error" });
-    }
-};
