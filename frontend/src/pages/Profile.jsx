@@ -1,9 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { assets } from '../assets/assets';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { assets } from '../assets/assets';
-import { useNavigate } from 'react-router-dom'
 
 import Snowfall from 'react-snowfall'; // Import the snowfall library
 import profileBg from '../assets/profilebg.png';
@@ -12,7 +12,7 @@ import Navbar from '../components/Navbar';
 
 
 const Profile = () => {
-    const { userData, backendUrl, setUserData } = useContext(AppContext);
+    const { userData, backendUrl, setUserData, setIsLoggedin } = useContext(AppContext);
     const navigate = useNavigate()
     // State for edit mode and form fields
     const [isEditing, setIsEditing] = useState(false);
@@ -66,10 +66,6 @@ const Profile = () => {
             }
         }
     };
-
-
-
-
     // Populate form data when userData is updated
     useEffect(() => {
         if (userData) {
@@ -97,6 +93,25 @@ const Profile = () => {
             </div>
         );
     }
+
+    const logout = async () => {
+        try {
+            axios.defaults.withCredentials = true;
+            const { data } = await axios.post(`${backendUrl}/api/auth/logout`);
+            if (data.success) {
+                setIsLoggedin(false);
+                setUserData(false);
+                navigate('/');
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
+    };
+    
+    const goToReward = () => {
+        navigate('/reward');
+    };
+
 
     return (
         <div
@@ -134,16 +149,18 @@ const Profile = () => {
                             />
                             <div className="flex flex-col space-y-3 sm:ml-8">
                                 <button
+                                    onClick={goToReward}
                                     type="button"
                                     className="py-3 px-6 font-medium bg-[#40826d] text-[#F0F2D5] rounded-lg hover:bg-[#04361D]"
                                 >
-                                    Change picture
+                                    My Reward
                                 </button>
                                 <button
+                                    onClick={logout}
                                     type="button"
                                     className="py-3 px-6 font-medium text-[#40826d] bg-white border border-[#04361D] rounded-lg hover:bg-gray-200"
                                 >
-                                    Delete picture
+                                    Log Out
                                 </button>
                             </div>
                         </div>
