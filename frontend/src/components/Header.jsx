@@ -2,11 +2,27 @@ import React, { useContext } from 'react'
 import { assets } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
 import Leaderboard from '../pages/Leaderboard'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+
 
 
 const Header = () => {
-
    const { userData } = useContext(AppContext)
+   const navigate = useNavigate()
+   const getStartedBtn = () => {
+      if (userData) {
+         
+         toast.success('Enjoy!')
+         navigate('/games')
+      } else {
+       
+         toast.error('Please log in first')
+         navigate('/login')
+      }
+   }
+
+  
 
    return (
       <div className='flex flex-col items-center mt-20 px-4 text-center text-[#04361D]'>
@@ -23,7 +39,9 @@ const Header = () => {
 
          <Leaderboard/>
 
-         <button className='btn mt-5 mb-10 shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
+         <button
+         onClick={getStartedBtn}
+          className='btn mt-5 mb-10 shadow-[0_4px_6px_rgba(255,255,255,0.3)] hover:shadow-[0_6px_8px_rgba(255,255,255,0.5)] 
            text-black bg-white ease-out hover:translate-y-1 transition-all 
            rounded-full px-8 py-3 text-lg font-semibold hover:bg-gray-100'>
             Seize Your Legend
@@ -35,3 +53,12 @@ const Header = () => {
 }
 
 export default Header
+
+
+
+
+
+
+
+
+
