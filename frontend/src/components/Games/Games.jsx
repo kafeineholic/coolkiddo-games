@@ -18,25 +18,25 @@ import TictactoeImg from '../../assets/thumbnail/TicTacToe.png'
 const GameCardData = [
     {
         id: "Memo-game",
-        title: "Memo-game",
+        title: "Fruits Monster",
         image: memoGameImg,
         players: 40,
     },
     {
         id: "2048-games",
-        title: "2048-games",
+        title: "2048",
         image: Img2048,
         players: 42,
     },
     {
         id: "Floppy-Bird",
-        title: "FloppyBird",
+        title: "Floppy Birds",
         image: FloppyBirdImg,
         players: 45,
     },
     {
         id: "PacMan",
-        title: "PacMan",
+        title: "PAC-MAN",
         image: pacmanImg,
         players: 50,
     },
@@ -48,7 +48,7 @@ const GameCardData = [
     },
     {
         id: "WhackAMole",
-        title: "WhackAMole",
+        title: "Whack A Mole",
         image: whackAMoleImg,
         players: 70,
     },
@@ -90,11 +90,11 @@ const Games = () => {
                 <Carousel
                     className="rounded-l w-full mt-16"
 
-                    // autoplay={true}
-                    // loop={true}
-                    // autoplayDelay={10000}
+                    autoplay={true}
+                    autoplayDelay={8000}
 
-                    // Added margin bottom to separate from cards
+                    loop={true}
+
                     navigation={({ setActiveIndex, activeIndex, length }) => (
 
 
@@ -119,41 +119,153 @@ const Games = () => {
                             src={whackAMoleImg}
                             className="h-[400px] w-full object-cover object-bottom"
                         />
-                    </div>
-                    <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/50 opacity-0 transition-opacity group-hover:opacity-100">
-                        <div className="w-3/4 text-center md:w-2/4">
-                            <Typography
-                                variant="h1"
-                                color="white"
-                                className="mb-4 text-3xl md:text-4xl lg:text-5xl"
-                            >
-                                Whack A Mole
-                            </Typography>
-                        </div>
-                        <div className="flex justify-center gap-2">
-                            <Button size="lg" color="white">
-                                PLAY GAMES
-                            </Button>
+
+                        <div className="absolute inset-0 grid h-full w-full 
+                        place-items-center bg-black/50 
+                        opacity-0 transition-opacity group-hover:opacity-100">
+                            <div className="w-3/4 text-center md:w-2/4">
+                                <Typography
+                                    variant="h1"
+                                    color="white"
+                                    className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                                >
+                                    Whack A Mole
+                                </Typography>
+                            </div>
+                            <div className="flex justify-center gap-2">
+                                <Button size="lg" color="red">
+                                    PLAY GAMES
+                                </Button>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="relative h-full w-[100vw]">
+
+                    <div className="relative h-full w-[100vw] group">
                         <img
                             src={TictactoeImg}
                             className="h-[400px] w-full object-cover"
                         />
+                        <div className="absolute inset-0 grid h-full w-full 
+                        place-items-center bg-black/50 
+                        opacity-0 transition-opacity group-hover:opacity-100">
+                            <div className="w-3/4 text-center md:w-2/4">
+                                <Typography
+                                    variant="h1"
+                                    color="white"
+                                    className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                                >
+                                    Tic-Tac-Toe
+                                </Typography>
+                            </div>
+                            <div className="flex justify-center gap-2">
+                                <Button size="lg" color="red">
+                                    PLAY GAMES
+                                </Button>
+                            </div>
+                        </div>
                     </div>
-                    <div className="relative h-full w-[100vw]">
+
+
+                    <div className="relative h-full w-[100vw] group">
                         <img
                             src={pacmanImg}
                             className="h-[400px] w-full object-cover"
                         />
+                        <div className="absolute inset-0 grid h-full w-full 
+                        place-items-center bg-black/50 
+                        opacity-0 transition-opacity group-hover:opacity-100">
+                            <div className="w-3/4 text-center md:w-2/4">
+                                <Typography
+                                    variant="h1"
+                                    color="white"
+                                    className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                                >
+                                    PAC-MAN
+                                </Typography>
+                            </div>
+                            <div className="flex justify-center gap-2">
+                                <Button size="lg" color="red">
+                                    PLAY GAMES
+                                </Button>
+                            </div>
+                        </div>
                     </div>
-                    <div className="relative h-full w-[100vw]">
+                    <div className="relative h-full w-[100vw] group">
                         <img
                             src={FloppyBirdImg}
-                            className="h-[400px] w-full object-cover object-up"
+                            className="h-[400px] w-full object-cover object-top"
                         />
+                        <div className="absolute inset-0 grid h-full w-full 
+                        place-items-center bg-black/50 
+                        opacity-0 transition-opacity group-hover:opacity-100">
+                            <div className="w-3/4 text-center md:w-2/4">
+                                <Typography
+                                    variant="h1"
+                                    color="white"
+                                    className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                                >
+                                    Floppy Birds
+                                </Typography>
+                            </div>
+                            <div className="flex justify-center gap-2">
+                                <Button size="lg" color="red">
+                                    PLAY GAMES
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="relative h-full w-[100vw] group">
+                        <img
+                            src={Img2048}
+                            className="h-[400px] w-full object-cover"
+                        />
+                        <div className="absolute inset-0 grid h-full w-full 
+                        place-items-center bg-black/50 
+                        opacity-0 transition-opacity group-hover:opacity-100">
+                            <div className="w-3/4 text-center md:w-2/4">
+                                <Typography
+                                    variant="h1"
+                                    color="white"
+                                    className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                                >
+                                    2048
+                                </Typography>
+                            </div>
+                            <div className="flex justify-center gap-2">
+                                <Button size="lg" color="red">
+                                    PLAY GAMES
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className="relative h-full w-[100vw] group">
+                        <img
+                            src={memoGameImg}
+                            className="h-[400px] w-full object-cover object"
+                        />
+                        <div className="absolute inset-0 grid h-full w-full 
+                        place-items-center bg-black/50 
+                        opacity-0 transition-opacity group-hover:opacity-100">
+                            <div className="w-3/4 text-center md:w-2/4">
+                                <Typography
+                                    variant="h1"
+                                    color="white"
+                                    className="mb-4 text-3xl md:text-4xl lg:text-5xl"
+                                >
+                                    Fruits Monster
+                                </Typography>
+                            </div>
+                            <div className="flex justify-center gap-2">
+                                <Button size="lg" color="red">
+                                    PLAY GAMES
+                                </Button>
+                            </div>
+                        </div>
                     </div>
 
                 </Carousel>
