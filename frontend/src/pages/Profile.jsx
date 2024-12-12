@@ -5,6 +5,11 @@ import { toast } from 'react-toastify';
 import { assets } from '../assets/assets';
 import { useNavigate } from 'react-router-dom'
 
+import Snowfall from 'react-snowfall'; // Import the snowfall library
+import profileBg from '../assets/profilebg.png';
+import ProfilePic from '../assets/profile.png';
+
+
 const Profile = () => {
     const { userData, backendUrl, setUserData } = useContext(AppContext);
     const navigate = useNavigate()
@@ -78,7 +83,13 @@ const Profile = () => {
     // If userData is null, show loading screen
     if (userData === null) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-gray-100">
+            <div className="min-h-screen flex items-center justify-center"
+                style={{
+                    backgroundImage: `url(${profileBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                }}>
                 <div className="bg-white p-6 rounded shadow-lg w-full sm:w-1/2">
                     <h1 className="text-2xl font-bold mb-4">Loading...</h1>
                 </div>
@@ -87,11 +98,19 @@ const Profile = () => {
     }
 
     return (
-        <div className="bg-white w-full flex flex-col gap-5 px-4 md:px-16 lg:px-28 md:flex-row text-[#161931]">
+        <div className="bg-white w-full flex flex-col gap-5 px-4 md:px-16 lg:px-28 md:flex-row text-[#161931]"
+            style={{
+                backgroundImage: `url(${profileBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+            }}>
+            <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
+
             <aside className="hidden py-4 md:w-1/3 lg:w-1/4 md:block">
                 <div className="sticky flex flex-col gap-4 p-4 text-sm border-r border-gray-200 top-12 bg-gray-50 rounded-lg shadow-md">
-                    <h2 className="pl-3 mb-6 text-2xl font-semibold text-indigo-700">Settings</h2>
-                    <a href="#" className="flex items-center px-4 py-3 font-semibold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700">
+                    <h2 className="pl-3 mb-6 text-2xl font-semibold text-[#04361D]">Settings</h2>
+                    <a href="#" className="flex items-center px-4 py-3 font-semibold text-[#F0F2D5] bg-[#40826D] rounded-lg hover:bg-[#04361D]">
                         Edit User Profile
                     </a>
                     {/* <a href="#" className="flex items-center px-4 py-3 font-medium text-indigo-600 bg-gray-100 rounded-lg hover:bg-indigo-200">
@@ -108,24 +127,24 @@ const Profile = () => {
 
             <main className="w-full min-h-screen py-1 md:w-2/3 lg:w-3/4">
                 <div className="p-4 bg-gray-50 rounded-lg shadow-md">
-                    <h2 className="text-3xl font-bold text-indigo-700">User Profile</h2>
+                    <h2 className="text-3xl font-bold text-[#04361D]">User Profile</h2>
                     <div className="grid max-w-2xl mx-auto mt-8">
                         <div className="flex flex-col items-center space-y-5 sm:flex-row sm:space-y-0">
                             <img
-                                className="object-cover w-40 h-40 p-2 rounded-full ring-4 ring-indigo-300"
-                                src={userData.profilePicture || "https://i.pinimg.com/550x/0e/51/7e/0e517eb57cb5a992ef3230b0e0d792af.jpg"}
+                                className="object-cover w-40 h-40 p-2 rounded-full ring-4 ring-white ring-offset-2 ring-offset-blue-100"
+                                src={userData.profilePicture || ProfilePic}
                                 alt="User avatar"
                             />
                             <div className="flex flex-col space-y-3 sm:ml-8">
                                 <button
                                     type="button"
-                                    className="py-3 px-6 font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700"
+                                    className="py-3 px-6 font-medium bg-[#40826d] text-[#F0F2D5] rounded-lg hover:bg-[#04361D]"
                                 >
                                     Change picture
                                 </button>
                                 <button
                                     type="button"
-                                    className="py-3 px-6 font-medium text-indigo-600 bg-white border border-indigo-300 rounded-lg hover:bg-gray-100"
+                                    className="py-3 px-6 font-medium text-[#40826d] bg-white border border-[#04361D] rounded-lg hover:bg-gray-200"
                                 >
                                     Delete picture
                                 </button>
@@ -135,14 +154,14 @@ const Profile = () => {
                             {userData ? (
                                 <div className="space-y-6">
                                     <div>
-                                        <label className="block mb-2 text-sm font-medium text-indigo-700">Your Full name</label>
+                                        <label className="block mb-2 text-sm font-medium text-[#40826d]">Your Full name</label>
                                         {isEditing ? (
                                             <input
                                                 type="text"
                                                 name="name"
                                                 value={formData.name}
                                                 onChange={handleInputChange}
-                                                className="w-full p-2.5 bg-gray-100 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                                                className="w-full p-2.5 bg-gray-100 border border-gray-300 rounded-lg focus:ring-[#40826d] focus:border-[#40826d]"
                                             />
                                         ) : (
                                             <p className="text-lg font-medium">{formData.name || 'Loading...'}</p>
@@ -150,14 +169,14 @@ const Profile = () => {
                                     </div>
 
                                     <div>
-                                        <label className="block mb-2 text-sm font-medium text-indigo-700">Your Email</label>
+                                        <label className="block mb-2 text-sm font-medium text-[#40826d]">Your Email</label>
                                         {isEditing ? (
                                             <input
                                                 type="email"
                                                 name="email"
                                                 value={formData.email}
                                                 onChange={handleInputChange}
-                                                className="w-full p-2.5 bg-gray-100 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                                                className="w-full p-2.5 bg-gray-100 border border-gray-300 rounded-lg focus:ring-[#40826d] focus:border-[#40826d]"
                                             />
                                         ) : (
                                             <p className="text-lg font-medium">{formData.email || 'Loading...'}</p>
@@ -165,14 +184,14 @@ const Profile = () => {
                                     </div>
 
                                     <div>
-                                        <label className="block mb-2 text-sm font-medium text-indigo-700">Your Password</label>
+                                        <label className="block mb-2 text-sm font-medium text-[#40826d]">Your Password</label>
                                         {isEditing ? (
                                             <input
                                                 type="password"
                                                 name="password"
                                                 value={formData.password}
                                                 onChange={handleInputChange}
-                                                className="w-full p-2.5 bg-gray-100 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+                                                className="w-full p-2.5 bg-gray-100 border border-gray-300 rounded-lg focus:ring-[#40826d] focus:border-[#40826d]"
                                             />
                                         ) : (
                                             <p>******</p>
@@ -183,7 +202,7 @@ const Profile = () => {
                                         <div className="flex justify-end gap-4">
                                             <button
                                                 onClick={handleSave}
-                                                className="px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700"
+                                                className="px-5 py-2.5 text-sm font-medium bg-[#40826d] text-[#F0F2D5] rounded-lg hover:bg-[#04361D]"
                                             >
                                                 Save
                                             </button>
@@ -197,7 +216,7 @@ const Profile = () => {
                                     ) : (
                                         <button
                                             onClick={() => setIsEditing(true)}
-                                            className="px-5 py-2.5 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700"
+                                            className="px-5 py-2.5 text-sm font-medium bg-[#40826d] text-[#F0F2D5] rounded-lg hover:bg-[#04361D]"
                                         >
                                             Edit Profile
                                         </button>

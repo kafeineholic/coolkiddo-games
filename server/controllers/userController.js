@@ -66,37 +66,29 @@ export const updateUserProfile = async (req, res) => {
 // Update User's Coin
 export const updateUserCoins = async (req, res) => {
     try {
-        // Extract and convert coins to a number
         const { userId, coins } = req.body;
-        const coinValue = Number(coins); // Convert to number
+        
+        
+        console.log('Received data:', { userId, coins });
 
-        // Validate the coins value
-        if (isNaN(coinValue) || coinValue <= 0) {
-            return res.status(400).json({ message: "Invalid coin value" });
+        if (!userId || !coins) {
+            return res.status(400).json({ success: false, message: "Invalid input data" });
         }
 
-        // Find the user by userId
-        const user = await userModel.findById(userId);
-
+        const user = await userModel.findById(userId); 
+        
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            console.log(`User not found with ID: ${userId}`);
+            return res.status(404).json({ success: false, message: "User not found" });
         }
 
-        // Update the user's coins
-        user.coins = coinValue;
-
-        // Log before saving
-        console.log("Before save:", user);
-
-        // Save the updated user
+        user.coins += coins; // increment coin
         await user.save();
+        console.log(`Updated user coins: ${user.coins}`);
 
-        // Log after saving
-        console.log("After save:", user);
-
-        // Respond with the updated coins value
-        res.status(200).json({ message: "Coins updated successfully", coins: user.coins });
+        res.status(200).json({ success: true, coins: user.coins });
     } catch (error) {
-        res.status(500).json({ message: "Server error", error: error.message });
+        console.error("Error updating coins:", error); 
+        res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 };

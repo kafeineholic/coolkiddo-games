@@ -11,8 +11,9 @@ export const AppContextProvider = (props) => {
     const backendUrl = import.meta.env.VITE_BACKEND_URL
     //console.log('Backend URL:', backendUrl);
     const [isLoggedin , setIsLoggedin] = useState(false) 
-    const [userData, setUserData] = useState(null); // Start with null
-    //const [userData, setUserData] = useState(false)
+    const [userData, setUserData] = useState(null); 
+    
+    
 
     const getAuthState = async() => {
         try{
