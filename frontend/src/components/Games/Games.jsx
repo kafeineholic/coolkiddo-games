@@ -55,9 +55,10 @@ const GameCardData = [
 
 
 const Games = () => {
+const navigate = useNavigate();
 
     const Navbar = () => {
-        const navigate = useNavigate();
+        
         return (
           <div className="w-full flex justify-between items-center py-2 px-4 sm:py-3 sm:px-16 absolute top-0 bg-[#40826d] z-10">
             <img
@@ -82,18 +83,18 @@ const Games = () => {
         bg-[#97051d]'>
            <Navbar/>
 
-            <section className="py-10 bg-primary text-white">
+            <section className="py-10 bg-primary text-white pt-16 mt-5">
                 <div className="container">
                     {/* Header section */}
                     <div className="flex justify-between">
                         <h1 className="text-3xl font-bold">Games</h1>
-                        <button className="bg-gray-400/50 text-white rounded-xl px-4 py-2">
+                        {/* <button className="bg-gray-400/50 text-white rounded-xl px-4 py-2">
                             View All
-                        </button>
+                        </button> */}
                     </div>
                     {/* Trending Games Card section */}
                     <div>
-                        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 mt-8">
+                        <div className="grid grid-cols-3 gap-4 mt-10">
                             {/* Games Card */}
                             {GameCardData.map((item) => (
                                 <div
@@ -107,9 +108,9 @@ const Games = () => {
                                         className="w-full h-[200px] object-cover rounded-xl shadow-xl
                                         transition-transform transform hover:scale-105 hover:shadow-2xl rounded-xl"
                                     />
-                                    <div className="text-center">
+                                    <div className="text-center mt-5">
                                         <p>{item.title}</p>
-                                        <p className="flex items-center justify-center gap-2">
+                                        <p className="flex items-center justify-center gap-2 mb-5">
                                             <FaFire />
                                             <span>{item.players}</span> players
                                         </p>
