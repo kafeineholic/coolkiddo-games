@@ -8,8 +8,8 @@ import footerBg from '../assets/footerbg.png';
 const Footer = () => {
     return (
         <footer
-            className="relative text-white bg-transparent pt-20"
-            style={{
+        className="fixed inset-x-0 bottom-0 text-white pt-40 z-50"
+        style={{
                 backgroundImage: `url(${footerBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
@@ -17,8 +17,7 @@ const Footer = () => {
             }}
         >
             {/* Footer Content */}
-            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 p-10 bg-opacity-70 bg-white ">
-                {/* Your sections */}
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 p-5 bg-opacity-70 bg-transparent ">
             </div>
             {/* Footer Bottom */}
             <div className="text-[#366a56] text-center py-4">
