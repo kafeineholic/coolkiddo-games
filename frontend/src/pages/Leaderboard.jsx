@@ -3,12 +3,12 @@ import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+
 const Leaderboard = () => {
     const { userData, backendUrl } = useContext(AppContext);
     const [leaderboard, setLeaderboard] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    
     const fetchLeaderboard = async () => {
         if (!userData?._id) {
             console.error('User ID not found');
@@ -42,7 +42,11 @@ const Leaderboard = () => {
     }, [userData]);
 
     if (loading) {
-        return <div className="spinner">Loading...</div>;
+        return (
+            <div className="text-center py-10">
+                <div className="spinner">Loading...</div>
+            </div>
+        );
     }
 
     if (!userData) {
@@ -50,25 +54,25 @@ const Leaderboard = () => {
     }
 
     return (
-        <div className="leaderboard-container max-w-4xl mx-auto p-4">
-            <h1 className="text-2xl font-bold text-center mb-4">Leaderboard</h1>
-            <table className="table-auto w-full text-left">
+        <div className="leaderboard-container max-w-4xl mx-auto p-6 bg-blue-300 rounded-lg shadow-xl mt-5">
+            <h2 className="text-3xl font-bold text-center mb-6 text-black">Leaderboard</h2>
+            <table className="table-auto w-full text-left text-black">
                 <thead>
-                    <tr>
-                        <th className="py-2 px-4">Rank</th>
-                        <th className="py-2 px-4">Name</th>
-                        <th className="py-2 px-4">Coins</th>
+                    <tr className="bg-blue-400">
+                        <th className="py-3 px-4 text-lg">Rank</th>
+                        <th className="py-3 px-4 text-lg">Name</th>
+                        <th className="py-3 px-4 text-lg">Coins</th>
                     </tr>
                 </thead>
                 <tbody>
                     {leaderboard.map((user, index) => (
                         <tr
                             key={index}
-                            className={user.isCurrentUser ? 'bg-yellow-200' : 'bg-white'}
+                            className={`text-lg hover:bg-blue-300 ${user.isCurrentUser ? 'bg-yellow-200 text-black' : 'bg-blue-200'}`}
                         >
-                            <td className="py-2 px-4">{user.rank}</td>
-                            <td className="py-2 px-4">{user.isCurrentUser ? 'Me' : user.name}</td>
-                            <td className="py-2 px-4">{user.coins}</td>
+                            <td className="py-3 px-4">{user.rank}</td>
+                            <td className="py-3 px-4">{user.isCurrentUser ? 'Me' : user.name}</td>
+                            <td className="py-3 px-4">{user.coins}</td>
                         </tr>
                     ))}
                 </tbody>
