@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Profile from './pages/Profile'
 import Footer from './components/Footer'
 import Reward from './pages/Reward.jsx'
+import Leaderboard from './pages/Leaderboard.jsx'
 
 import Games from './components/Games/Games.jsx'
 import MemoGame from './components/Games/MemoGame.jsx'
@@ -30,6 +31,7 @@ const App = () => {
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/profile' element={<Profile />} />
         <Route path="/reward" element={<Reward />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/games" element={<Games />} />
         <Route path="/games/memo-game" element={<MemoGame />} />
         <Route path="/games/2048-games" element={<TwoZeroFourEightGames />} />
