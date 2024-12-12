@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
     resetOtp: {type: String, default: ''},
     resetOtpExpireAt: {type: Number, default: 0},
     coins: {type: Number, default:0},
-    claimedDays: { type: [Boolean], default: [false, false, false, false, false, false, false] }, 
+    //claimedDays: { type: [Boolean], default: [false, false, false, false, false, false, false] }, 
+    lastClaimTime: { type: Date, default: null }, 
 })
 
 const userModel = mongoose.models.user || mongoose.model('user',userSchema)

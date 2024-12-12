@@ -6,11 +6,13 @@ import { toast } from 'react-toastify';
 const Reward = () => {
     const { userData, backendUrl } = useContext(AppContext);
     const [userCoins, setUserCoins] = useState(0);
-    const [claimedDays, setClaimedDays] = useState([false, false, false, false, false, false, false]); // 7 days of the week
+    const [isClaimed, setIsClaimed] = useState(false);
+    const [remainingTime, setRemainingTime] = useState(0); // Time in seconds
     const [loading, setLoading] = useState(true);
 
     const userId = userData?._id;
 
+    // Fetch coins and claim status
     const fetchCoins = async () => {
         if (!userId) {
             console.error('User ID not found');
@@ -24,13 +26,21 @@ const Reward = () => {
 
             if (data.success) {
                 setUserCoins(data.coins);
+                const lastClaimTime = data.lastClaimTime;
 
-                // Set claimedDays from the API, and also ensure localStorage is synced.
-                const updatedClaimedDays = Array.isArray(data.claimedDays) ? data.claimedDays : [false, false, false, false, false, false, false];
-                setClaimedDays(updatedClaimedDays);
-
-                // Persist claimedDays in localStorage for persistence across page reloads
-                localStorage.setItem('claimedDays', JSON.stringify(updatedClaimedDays));
+                if (lastClaimTime) {
+                    const timeDiff = Math.floor((new Date().getTime() - new Date(lastClaimTime).getTime()) / 1000);
+                    if (timeDiff < 86400) { // Less than 24 hours
+                        setIsClaimed(true);
+                        setRemainingTime(86400 - timeDiff); // Remaining time in seconds
+                    } else {
+                        setIsClaimed(false);
+                        setRemainingTime(0); // Reset the remaining time
+                    }
+                } else {
+                    setIsClaimed(false);
+                    setRemainingTime(0);
+                }
             } else {
                 toast.error(data.message || 'Failed to fetch coins');
             }
@@ -41,62 +51,70 @@ const Reward = () => {
         setLoading(false);
     };
 
-    const claimCoin = async (dayIndex) => {
-        if (claimedDays[dayIndex]) {
-            toast.error('You have already claimed this day.');
-            return;
-        }
-
-        const currentDate = new Date();
-        const currentDay = currentDate.getDay();
-
-        if (dayIndex !== currentDay) {
-            toast.error('Please wait until today to claim your coin.');
+    // Claim the coin and update the backend and UI
+    const claimCoin = async () => {
+        if (isClaimed) {
+            toast.error('You have already claimed your coin today.');
             return;
         }
 
         try {
-            const { data } = await axios.post(`${backendUrl}/api/user/claim-coin/${userId}`);
+            const { data } = await axios.post(`${backendUrl}/api/user/claim-coin/${userId}`, {}, { withCredentials: true });
 
             if (data.success) {
                 setUserCoins(data.coins);
-                const newClaimedDays = [...claimedDays];
-                newClaimedDays[dayIndex] = true;
-                setClaimedDays(newClaimedDays);
+                setIsClaimed(true); // Update isClaimed to true after successful claim
+                setRemainingTime(86400); // Reset the remaining time to 24 hours
 
-                // Persist the updated claimedDays to localStorage
-                localStorage.setItem('claimedDays', JSON.stringify(newClaimedDays));
-                toast.success('Successfully Claimed Coin');
+                // Update last claim time in localStorage
+                localStorage.setItem('lastClaimTime', new Date().toISOString());
+
+                toast.success('Successfully claimed your coin!');
             } else {
                 toast.error(data.message || 'Failed to claim coin');
             }
         } catch (error) {
             console.error('Error claiming coin:', error);
-            toast.error('You have already claim coin for today.');
-
-            // In case of an error (e.g., 400 Bad Request), update the UI state to reflect the claim was unsuccessful
-            if (error.response?.status === 400) {
-                const newClaimedDays = [...claimedDays];
-                newClaimedDays[dayIndex] = true;
-                setClaimedDays(newClaimedDays);
-
-                // Persist the updated claimedDays to localStorage
-                localStorage.setItem('claimedDays', JSON.stringify(newClaimedDays));
-            }
+            toast.error('An error occurred while claiming your coin.');
         }
     };
 
+    // Countdown logic for remaining time
     useEffect(() => {
-        // Load claimedDays from localStorage on component mount
-        const savedClaimedDays = localStorage.getItem('claimedDays');
-        if (savedClaimedDays) {
-            setClaimedDays(JSON.parse(savedClaimedDays));
-        }
+        if (remainingTime > 0) {
+            const interval = setInterval(() => {
+                setRemainingTime((prev) => {
+                    if (prev <= 1) {
+                        clearInterval(interval); // Stop interval when time reaches 0
+                        setIsClaimed(false); // Reset claim status after 24 hours
+                        return 0;
+                    }
+                    return prev - 1;
+                });
+            }, 1000);
 
+            return () => clearInterval(interval); // Clean up interval on component unmount
+        }
+    }, [remainingTime]);
+
+    // Fetch data and check claim status
+    useEffect(() => {
         if (userData) {
             fetchCoins();
         }
     }, [userData]);
+
+    // Reset claim status if more than 24 hours passed since last claim
+    useEffect(() => {
+        const lastClaimTime = localStorage.getItem('lastClaimTime');
+        if (lastClaimTime) {
+            const timeDiff = Math.floor((new Date().getTime() - new Date(lastClaimTime).getTime()) / 1000);
+            if (timeDiff >= 86400) {
+                setIsClaimed(false); // Reset claim status
+                setRemainingTime(0); // Reset remaining time
+            }
+        }
+    }, []);
 
     if (loading) {
         return <div className="spinner">Loading...</div>;
@@ -111,19 +129,37 @@ const Reward = () => {
             <h1 className="text-2xl font-bold text-center mb-4">My Rewards</h1>
             <p className="text-center text-lg mb-4">You have <strong>{userCoins}</strong> coins.</p>
 
-            <div className="reward-grid grid grid-cols-7 gap-4 mt-6">
-                {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((day, index) => (
-                    <div
-                        key={index}
-                        className={`reward-box text-center py-4 rounded-lg transition-all duration-300
-                            ${claimedDays[index] ? 'bg-gray-400 cursor-not-allowed opacity-50' : 'bg-gray-200 hover:bg-gray-300 cursor-pointer'}`}
-                        onClick={() => !claimedDays[index] && claimCoin(index)}
-                        style={{ cursor: claimedDays[index] ? 'not-allowed' : 'pointer' }}
-                    >
-                        <p className="font-medium">{day}</p>
-                        {claimedDays[index] && <p className="mt-2 text-sm text-green-600">Claimed</p>}
+            <div className="text-center mt-6">
+                {isClaimed ? (
+                    <div>
+                        <p className="text-sm mb-2">You have already claimed your coin today.</p>
+                        <p className="text-sm mb-4">Next claim available in: <strong>{remainingTime} seconds</strong></p>
                     </div>
-                ))}
+                ) : (
+                    <div>
+                        <p className="text-sm mb-4">Claim your coin now!</p>
+                        <button
+                            className="bg-blue-500 text-white py-2 px-4 rounded disabled:opacity-50"
+                            onClick={claimCoin}
+                            disabled={isClaimed || remainingTime > 0}
+                        >
+                            Claim Coin
+                        </button>
+                    </div>
+                )}
+            </div>
+
+            {isClaimed && remainingTime > 0 && (
+                <div className="text-center mt-6">
+                    <p className="text-sm mb-4">Your next claim is available in:</p>
+                    <p className="text-lg font-bold">{remainingTime} seconds</p>
+                </div>
+            )}
+
+            <div className="text-center mt-6">
+                {!isClaimed && remainingTime === 0 && (
+                    <img src="path_to_image.jpg" alt="Reward Box" className="w-48 h-48 mx-auto mb-4" />
+                )}
             </div>
         </div>
     );

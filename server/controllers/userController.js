@@ -26,7 +26,7 @@ export const getUserData = async (req,res) => {
             isAccountVerified: user.isAccountVerified,
             password: user.password,
             coins: user.coins,
-            claimedDays: user.claimedDays,
+            lastClaimTime: user.lastClaimTime
         }
      });
 
@@ -103,7 +103,6 @@ export const claimCoinForDay = async (req, res) => {
     try {
         const { userId } = req.params;
         const currentDate = new Date();
-        const currentDay = currentDate.getDay();  
 
         const user = await userModel.findById(userId);
 
@@ -111,17 +110,33 @@ export const claimCoinForDay = async (req, res) => {
             return res.status(404).json({ success: false, message: "User not found" });
         }
 
-        if (user.claimedDays[currentDay]) {
-            return res.status(400).json({ success: false, message: "You have already claimed your coin for today." });
+        const lastClaimTime = user.lastClaimTime;
+        const timeDiff = lastClaimTime ? Math.floor((currentDate - lastClaimTime) / 1000) : 86401; // Time difference in seconds
+
+        if (timeDiff < 86400) {  
+            return res.status(400).json({
+                success: false, 
+                message: "You have already claimed your coin for today.",
+                remainingTime: 86400 - timeDiff // Remaining time until next claim
+            });
         }
 
+        
         user.coins += 1;
-        user.claimedDays[currentDay] = true;  
+        user.lastClaimTime = currentDate;  // Store the current date as the last claim time
         await user.save();
 
-        res.status(200).json({ success: true, coins: user.coins, claimedDays: user.claimedDays });  // Include claimedDays in the response
+        // Return the updated coin count and last claim time
+        res.status(200).json({
+            success: true, 
+            coins: user.coins, 
+            lastClaimTime: user.lastClaimTime.toISOString(),
+            remainingTime: 86400 // Full 24 hours until next claim
+        });
     } catch (error) {
         console.error("Error claiming coin:", error);
         res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 };
+
+
