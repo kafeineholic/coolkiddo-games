@@ -5,7 +5,7 @@ import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const Navbar = () => {
+const gameNavbar = () => {
     const navigate = useNavigate();
     const { userData, backendUrl, setUserData, setIsLoggedin } = useContext(AppContext);
 
@@ -49,10 +49,9 @@ const Navbar = () => {
     return (
         <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0 bg-transparent">
             <img
-                onClick={() => navigate('/')}
                 src={assets.game}
                 alt=""
-                className="h-20 sm:h-12 object-contain cursor-pointer"
+                className="h-20 sm:h-12 object-contain"
                 style={{ width: "auto" }}
             />
 
@@ -110,4 +109,4 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+export default gameNavbar;

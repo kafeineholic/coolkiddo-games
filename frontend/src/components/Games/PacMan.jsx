@@ -11,9 +11,10 @@ const PacMan = () => {
       <div className="w-full flex justify-between items-center py-2 px-4 sm:py-3 sm:px-16 absolute top-0 bg-[#40826d] z-10">
         <img
           onClick={() => navigate('/')}
-          src={assets.game} 
-          alt="Game Logo"
-          className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer" 
+          src={assets.game}
+          alt=""
+          className="h-20 sm:h-12 object-contain cursor-pointer"
+          style={{ width: "auto" }}
         />
         <h1 className="text-xl sm:text-2xl text-white font-bold">PacMan</h1>
       </div>

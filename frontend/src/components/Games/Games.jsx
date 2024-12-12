@@ -5,7 +5,7 @@ import { assets } from '../../assets/assets';
 import { Carousel, iconButton, Typography, Button } from "@material-tailwind/react";
 // import { Carousel } from 'flowbite-react';
 
-
+import gameBg from '../Games/gamebg.png';
 
 import memoGameImg from '../../assets/thumbnail/MemoGame.png'
 import Img2048 from '../../assets/thumbnail/2048.png'
@@ -62,12 +62,13 @@ const Games = () => {
 
     const Navbar = () => {
         return (
-            <div className="w-full flex justify-between items-center py-2 px-4 sm:py-3 sm:px-16 absolute top-0 bg-[#40826d] z-10">
+            <div className="w-full flex justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0 bg-[transparent]">
                 <img
                     onClick={() => navigate('/')}
                     src={assets.game}
-                    alt="Game Logo"
-                    className="w-8 h-8 sm:w-12 sm:h-12 cursor-pointer"
+                    alt=""
+                    className="h-20 sm:h-12 object-contain cursor-pointer"
+                    style={{ width: "auto" }}
                 />
                 <h1 className="text-xl sm:text-2xl text-white font-bold">Games</h1>
             </div>
@@ -81,8 +82,15 @@ const Games = () => {
     };
 
     return (
-        <div className='flex flex-col items-center justify-center min-h-screen px-6 sm:px-0
-        bg-[#97051d]'>
+        <div className='flex flex-col items-center justify-center min-h-screen px-6 sm:px-0'
+        style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url(${gameBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            width:'100%',
+            minHeight: '100vh',
+          }}>
             <Navbar />
 
 
@@ -298,7 +306,7 @@ const Games = () => {
                                     <img
                                         src={item.image}
                                         alt={item.title}
-                                        className="w-full h-[200px] object-cover rounded-xl shadow-xl
+                                        className="w-full h-[200px] object-cover shadow-xl
                                         transition-transform transform hover:scale-105 hover:shadow-2xl rounded-xl"
                                     />
                                     <div className="text-center mt-5">
