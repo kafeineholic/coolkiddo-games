@@ -7,7 +7,6 @@ import { toast } from 'react-toastify'
 
 import Snowfall from 'react-snowfall'; // Import the snowfall library
 import loginBg from '../assets/loginbg.png';
-import BackgroundMusic from '../components/backgroundMusic'
 
 const Login = () => {
 
@@ -73,7 +72,6 @@ const Login = () => {
                 backgroundRepeat: 'no-repeat',
             }}
         >
-            <BackgroundMusic />
             <Snowfall color="white" snowflakeCount={100} style={{ position: 'absolute', zIndex: 1 }} />
             <img onClick={() => navigate('/')}
                 src={assets.game} alt=""
@@ -148,6 +146,5 @@ const Login = () => {
         </div>
     )
 }
-
 
 export default Login

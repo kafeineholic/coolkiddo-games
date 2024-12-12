@@ -4,7 +4,6 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { assets } from '../assets/assets';
 import Confetti from 'react-confetti';
-import BackgroundMusic from '../components/backgroundMusic'
 
 
 
@@ -146,7 +145,6 @@ const Reward = () => {
 
     return (
         <div className="reward-container max-w-4xl mx-auto p-4 mt-20">
-            <BackgroundMusic />
             <Confetti width={window.innerWidth} height={window.innerHeight} numberOfPieces={70} recycle={true} />
             <h1 className="text-2xl font-bold text-center mb-4">My Rewards 🎉</h1>
             <p className="text-center text-lg mb-4">You currently have {userCoins} coins</p>
