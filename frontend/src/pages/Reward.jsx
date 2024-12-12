@@ -1,102 +1,111 @@
-import React, { useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const Reward = () => {
     const { userData, backendUrl } = useContext(AppContext);
     const [userCoins, setUserCoins] = useState(0);
-    const [clickedDays, setClickedDays] = useState(new Array(7).fill(false));
+    const [claimedDays, setClaimedDays] = useState([false, false, false, false, false, false, false]); // 7 days of the week
+    const [loading, setLoading] = useState(true); 
 
-    // Fetch user's current coins from the backend or localStorage
-    useEffect(() => {
-        if (userData) {
-            // First, check if coins are available in localStorage
-            const storedCoins = localStorage.getItem('userCoins');
-            if (storedCoins) {
-                setUserCoins(JSON.parse(storedCoins)); // Use stored coins if available
-            } else {
-                // If no coins in localStorage, fetch from the backend
-                const fetchCoins = async () => {
-                    try {
-                        const { data } = await axios.get(
-                            `${backendUrl}/api/user/get-coins/${userData._id}`,
-                            { withCredentials: true }
-                        );
-                        if (data.success) {
-                            setUserCoins(data.coins);
-                            localStorage.setItem('userCoins', JSON.stringify(data.coins)); // Store coins in localStorage
-                        } else {
-                            toast.error(data.message || 'Error fetching coins');
-                        }
-                    } catch (error) {
-                        console.error('Error fetching coins:', error);
-                        toast.error('An error occurred while fetching coins.');
-                    }
-                };
-                fetchCoins();
-            }
+    const userId = userData?._id;
 
-            // Retrieve clicked days from localStorage
-            const storedClickedDays = JSON.parse(localStorage.getItem('clickedDays')) || new Array(7).fill(false);
-            setClickedDays(storedClickedDays);
-        }
-    }, [userData, backendUrl]);
-
-    const handleBoxClick = async (index) => {
-        if (clickedDays[index]) {
-            toast.error("You've already claimed this day's reward!");
+    const fetchCoins = async () => {
+        if (!userId) {
+            console.error('User ID not found');
+            toast.error('User ID not found. Please log in again.');
+            setLoading(false);
             return;
         }
 
-        // Request payload
-        console.log("Sending API request with:", {
-            userId: userData._id,
-            coins: 1,
-        });
-
         try {
-            const { data } = await axios.put(
-                `${backendUrl}/api/user/update-coins`,
-                { userId: userData._id, coins: 1 },
-                { withCredentials: true }
-            );
+            const { data } = await axios.get(`${backendUrl}/api/user/get-coins/${userId}`, { withCredentials: true });
 
             if (data.success) {
-                toast.success('You earned 1 coin!');
-                setUserCoins(data.coins); // Update coins
-
-                // Store the updated coins in localStorage
-                localStorage.setItem('userCoins', JSON.stringify(data.coins));
-
-                // Update clickedDays and store in localStorage
-                const updatedClickedDays = [...clickedDays];
-                updatedClickedDays[index] = true;
-                setClickedDays(updatedClickedDays);
-                localStorage.setItem('clickedDays', JSON.stringify(updatedClickedDays));
+                setUserCoins(data.coins);
+                
+                const updatedClaimedDays = Array.isArray(data.claimedDays) ? data.claimedDays : [false, false, false, false, false, false, false];
+                setClaimedDays(updatedClaimedDays);
             } else {
-                toast.error(data.message || 'Error updating coins');
+                toast.error(data.message || 'Failed to fetch coins');
             }
         } catch (error) {
-            console.error('Error updating coins:', error);
-            toast.error('An error occurred while claiming the reward.');
+            console.error('Error fetching coins:', error.message);
+            toast.error('An error occurred while fetching your coins.');
+        }
+        setLoading(false); 
+    };
+
+    const claimCoin = async (dayIndex) => {
+        if (claimedDays[dayIndex]) {
+            toast.error('You have already claimed this day.');
+            return;
+        }
+
+        const currentDate = new Date();
+        const currentDay = currentDate.getDay();
+
+        if (dayIndex !== currentDay) {
+            toast.error('Please wait until today to claim your coin.');
+            return;
+        }
+
+        try {
+            const { data } = await axios.post(`${backendUrl}/api/user/claim-coin/${userId}`);
+
+            if (data.success) {
+                setUserCoins(data.coins);
+                const newClaimedDays = [...claimedDays];
+                newClaimedDays[dayIndex] = true;
+                setClaimedDays(newClaimedDays);
+            } else {
+                toast.error(data.message || 'Failed to claim coin');
+            }
+        } catch (error) {
+            console.error('Error claiming coin:', error);
+            toast.error('An error occurred while claiming your coin.');
+            
+            // In case of an error (e.g., 400 Bad Request), update the UI state to reflect the claim was unsuccessful
+            if (error.response?.status === 400) {
+                // Mark the day as claimed in the frontend if the backend response indicates so
+                const newClaimedDays = [...claimedDays];
+                newClaimedDays[dayIndex] = true;
+                setClaimedDays(newClaimedDays);
+            }
         }
     };
 
+    useEffect(() => {
+        if (userData) {
+            fetchCoins();  
+        }
+    }, [userData]);
+
+    if (loading) {
+        return <div className="spinner">Loading...</div>; 
+    }
+
+    if (!userData) {
+        return <p className="text-center text-lg">Loading user data...</p>;
+    }
+
     return (
-        <div className="flex flex-col items-center p-6 bg-gray-100 min-h-screen">
-            <h1 className="text-2xl font-bold mb-4">Daily Rewards</h1>
-            <p className="mb-6 text-lg">Your Coins: {userCoins}</p>
-            <div className="grid grid-cols-7 gap-4">
-                {Array.from({ length: 7 }).map((_, index) => (
+        <div className="reward-container max-w-4xl mx-auto p-4">
+            <h1 className="text-2xl font-bold text-center mb-4">My Rewards</h1>
+            <p className="text-center text-lg mb-4">You have <strong>{userCoins}</strong> coins.</p>
+
+            <div className="reward-grid grid grid-cols-7 gap-4 mt-6">
+                {['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((day, index) => (
                     <div
                         key={index}
-                        className={`w-20 h-20 flex items-center justify-center text-lg font-semibold cursor-pointer 
-                            ${clickedDays[index] ? 'bg-gray-300' : 'bg-green-500 text-white'}
-                            hover:opacity-80`}
-                        onClick={() => handleBoxClick(index)}
+                        className={`reward-box text-center py-4 rounded-lg transition-all duration-300
+                            ${claimedDays[index] ? 'bg-gray-400 cursor-not-allowed opacity-50' : 'bg-gray-200 hover:bg-gray-300 cursor-pointer'}`}
+                        onClick={() => !claimedDays[index] && claimCoin(index)}
+                        style={{ cursor: claimedDays[index] ? 'not-allowed' : 'pointer' }}
                     >
-                        {clickedDays[index] ? 'Claimed' : `Day ${index + 1}`}
+                        <p className="font-medium">{day}</p>
+                        {claimedDays[index] && <p className="mt-2 text-sm text-green-600">Claimed</p>}
                     </div>
                 ))}
             </div>

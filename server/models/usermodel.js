@@ -11,7 +11,8 @@ const userSchema = new mongoose.Schema({
     // reset OTP and OTP expired 
     resetOtp: {type: String, default: ''},
     resetOtpExpireAt: {type: Number, default: 0},
-    coins: {type: Number, default:0}
+    coins: {type: Number, default:0},
+    claimedDays: { type: [Boolean], default: [false, false, false, false, false, false, false] }, 
 })
 
 const userModel = mongoose.models.user || mongoose.model('user',userSchema)
