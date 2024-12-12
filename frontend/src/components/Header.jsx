@@ -22,8 +22,6 @@ const Header = () => {
       }
    }
 
-
-
    return (
       <div>
          <div className='flex flex-col items-center mt-20 px-4 pb-40 text-center text-[#04361D] relative z-10'>
@@ -56,7 +54,7 @@ const Header = () => {
                backgroundPosition: 'center bottom',
                backgroundRepeat: 'no-repeat',
                top: 'auto',
-               bottom: '-250px',
+               bottom: '-500px',
             }}
          >
             {/* Footer Bottom */}
