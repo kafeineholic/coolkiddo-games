@@ -35,7 +35,7 @@ const Login = () => {
 
                 if (data.success) {
                     // Check if a session or token is set
-                    console.log('Registration successful:', data);
+                    toast.success('Registration successful');
 
                     setIsLoggedin(true);
                     await getUserData(); // Fetch user data after registration
@@ -53,6 +53,7 @@ const Login = () => {
                     setIsLoggedin(true);
                     await getUserData(); // Fetch user data after login
                     navigate('/');
+                    toast.success('Login Successful')
                 } else {
                     toast.error(data.message);
                 }
